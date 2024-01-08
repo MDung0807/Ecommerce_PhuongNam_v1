@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce_PhuongNam_v1.Domain", "Ecommerce_PhuongNam_v1.Domain\Ecommerce_PhuongNam_v1.Domain.csproj", "{4C52FC01-C0B2-4585-BBBF-AC6106E98DDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce_PhuongNam_v1.API", "Ecommerce_PhuongNam_v1.API\Ecommerce_PhuongNam_v1.API.csproj", "{D5A80C0F-DC2F-4E47-9294-01146CEE3A45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce_PhuongNam_v1.Application", "Ecommerce_PhuongNam_v1.Application\Ecommerce_PhuongNam_v1.Application.csproj", "{BC40A7C1-DF71-48A9-8CE2-A18CDBE4EDAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce_PhuongNam_v1.Infrastructure", "Ecommerce_PhuongNam_v1.Infrastructure\Ecommerce_PhuongNam_v1.Infrastructure.csproj", "{43B04771-7751-4390-8B20-EF5DF8EF4825}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C52FC01-C0B2-4585-BBBF-AC6106E98DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C52FC01-C0B2-4585-BBBF-AC6106E98DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C52FC01-C0B2-4585-BBBF-AC6106E98DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C52FC01-C0B2-4585-BBBF-AC6106E98DDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5A80C0F-DC2F-4E47-9294-01146CEE3A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5A80C0F-DC2F-4E47-9294-01146CEE3A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5A80C0F-DC2F-4E47-9294-01146CEE3A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5A80C0F-DC2F-4E47-9294-01146CEE3A45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC40A7C1-DF71-48A9-8CE2-A18CDBE4EDAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC40A7C1-DF71-48A9-8CE2-A18CDBE4EDAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC40A7C1-DF71-48A9-8CE2-A18CDBE4EDAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC40A7C1-DF71-48A9-8CE2-A18CDBE4EDAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B04771-7751-4390-8B20-EF5DF8EF4825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B04771-7751-4390-8B20-EF5DF8EF4825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B04771-7751-4390-8B20-EF5DF8EF4825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B04771-7751-4390-8B20-EF5DF8EF4825}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
