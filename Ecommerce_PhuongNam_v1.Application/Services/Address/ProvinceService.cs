@@ -25,7 +25,7 @@ public class ProvinceService : IProvinceService
         _mapper = mapper;
         _repository = unitOfWork.GenericRepository<Province, long>();
     }
-    public async Task<ProvinceResponse> GetById(int id)
+    public async Task<ProvinceResponse> GetById(long id)
     {
         ProvinceSpecification provinceSpecification = new ProvinceSpecification(id);
         Province province = await _repository.Get(provinceSpecification, checkStatus: false);
@@ -42,42 +42,42 @@ public class ProvinceService : IProvinceService
         return responses;
     }
 
-    public Task<bool> Update(ProvinceUpdate entity, int id, int userId)
+    public Task<bool> Update(ProvinceUpdate entity, long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> Delete(int id, int userId)
+    public Task<bool> Delete(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> Create(ProvinceCreate entity, int userId)
+    public Task<bool> Create(ProvinceCreate entity, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeIsActive(int id, int userId)
+    public Task<bool> ChangeIsActive(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeIsLock(int id, int userId)
+    public Task<bool> ChangeIsLock(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeToWaiting(int id, int userId)
+    public Task<bool> ChangeToWaiting(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeToDisable(int id, int userId)
+    public Task<bool> ChangeToDisable(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> CheckToExistById(int id)
+    public Task<bool> CheckToExistById(long id)
     {
         throw new NotImplementedException();
     }
@@ -97,12 +97,12 @@ public class ProvinceService : IProvinceService
         throw new NotImplementedException();
     }
 
-    public Task<object> GetAll(object pagingRequest, int idMaster)
+    public Task<object> GetAll(object pagingRequest, long idMaster)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> DeleteHard(int id)
+    public Task<bool> DeleteHard(long id)
     {
         throw new NotImplementedException();
     }

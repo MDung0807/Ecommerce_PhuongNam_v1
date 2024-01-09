@@ -29,7 +29,7 @@ public class DistrictService : IDistrictService
     }
 
     #region -- Public Method --
-    public async Task<DistrictResponse> GetById(int id)
+    public async Task<DistrictResponse> GetById(long id)
     {
         DistrictSpecification districtSpecification = new DistrictSpecification(id);
         District district = await _repository.Get(districtSpecification, checkStatus: false);
@@ -44,42 +44,42 @@ public class DistrictService : IDistrictService
         throw new NotImplementedException();
     }
 
-    public Task<bool> Update(DistrictUpdate entity, int id, int userId)
+    public Task<bool> Update(DistrictUpdate entity, long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> Delete(int id, int userId)
+    public Task<bool> Delete(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> Create(DistrictCreate entity, int userId)
+    public Task<bool> Create(DistrictCreate entity, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeIsActive(int id, int userId)
+    public Task<bool> ChangeIsActive(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeIsLock(int id, int userId)
+    public Task<bool> ChangeIsLock(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeToWaiting(int id, int userId)
+    public Task<bool> ChangeToWaiting(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeToDisable(int id, int userId)
+    public Task<bool> ChangeToDisable(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> CheckToExistById(int id)
+    public Task<bool> CheckToExistById(long id)
     {
         throw new NotImplementedException();
     }
@@ -99,12 +99,12 @@ public class DistrictService : IDistrictService
         throw new NotImplementedException();
     }
 
-    public Task<PagingResult<DistrictResponse>> GetAll(PagingRequest pagingRequest, int idMaster)
+    public Task<PagingResult<DistrictResponse>> GetAll(PagingRequest pagingRequest, long idMaster)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> DeleteHard(int id)
+    public Task<bool> DeleteHard(long id)
     {
         throw new NotImplementedException();
     }
@@ -116,7 +116,7 @@ public class DistrictService : IDistrictService
 
     #endregion -- Public Method --
 
-    public Task<List<DistrictResponse>> GetDistrictByUnit(int provinceId)
+    public Task<List<DistrictResponse>> GetDistrictByUnit(long provinceId)
     {
         throw new NotImplementedException();
     }

@@ -1,10 +1,16 @@
-﻿using Ecommerce_PhuongNam_v1.Application.Common.Responses;
+﻿using AutoMapper;
+using Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
+using Ecommerce_PhuongNam_v1.Application.Common.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.District;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Province;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Region;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Unit;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Ward;
+using Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.District;
+using Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.Province;
+using Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.Ward;
 using Ecommerce_PhuongNam_v1.Application.Interfaces.Address;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,27 +22,24 @@ public class AddressController : ControllerBase
 {
     #region -- Properties --
 
+    private readonly ISender _sender;
+    private readonly IMapper _mapper;
     private readonly IRegionService _regionService;
     private readonly IUnitService _unitService;
-    private readonly IProvinceService _provinceService;
-    private readonly IDistrictService _districtService;
-    private readonly IWardService _wardService;
 
     #endregion -- Properties --
 
     public AddressController(
+        ISender sender,
+        ICurrentUserService currentUserService,
         IRegionService regionService
         , IUnitService unitService
-        , IProvinceService provinceService
-        , IDistrictService districtService
         , IWardService wardService
     )
     {
+        _sender = sender;
         _regionService = regionService;
         _unitService = unitService;
-        _provinceService = provinceService;
-        _districtService = districtService;
-        _wardService = wardService;
     }
 
     #region -- Controller --
@@ -67,9 +70,9 @@ public class AddressController : ControllerBase
 
     [HttpGet("provinces/getById")]
     [AllowAnonymous]
-    public async Task<IActionResult> GetProvinceById([FromQuery] int id)
+    public async Task<IActionResult> GetProvinceById([FromQuery] long id)
     {
-        ProvinceResponse response = await _provinceService.GetById(id);
+        var response = await _sender.Send(new GetProvince(id));
         return Ok(new Response<ProvinceResponse>(false, response));
     }
     
@@ -77,7 +80,7 @@ public class AddressController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> GetAllProvinces()
     {
-        List<ProvinceResponse> responses = await _provinceService.GetAll();
+        var responses = await _sender.Send(new GetListProvince());
         return Ok(new Response<List<ProvinceResponse>>(false, responses));
     }
     
@@ -88,9 +91,9 @@ public class AddressController : ControllerBase
 
     [HttpGet("districts/getById")]
     [AllowAnonymous]
-    public async Task<IActionResult> GetDistrictById([FromQuery] int id)
+    public async Task<IActionResult> GetDistrictById([FromQuery] long id)
     {
-        DistrictResponse response = await _districtService.GetById(id);
+        var response = await _sender.Send(new GetDistrict(id));
         return Ok(new Response<DistrictResponse>(false, response));
     }
 
@@ -99,9 +102,9 @@ public class AddressController : ControllerBase
     #region -- Ward --
     [HttpGet("wards/getById")]
     [AllowAnonymous]
-    public async Task<IActionResult> GetWardById([FromQuery] int id)
+    public async Task<IActionResult> GetWardById([FromQuery] long id)
     {
-        WardResponse response = await _wardService.GetById(id);
+        var response = await _sender.Send(new GetWard(id));
         return Ok(new Response<WardResponse>(false, response));
     }
     #endregion -- Ward --

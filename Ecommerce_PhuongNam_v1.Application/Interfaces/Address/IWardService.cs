@@ -4,7 +4,7 @@ using Ecommerce_PhuongNam_v1.Domain.Entities;
 
 namespace Ecommerce_PhuongNam_v1.Application.Interfaces.Address;
 
-public interface IWardService : IService<WardCreate, WardUpdate, int, WardResponse, object, object>
+public interface IWardService : IService<WardCreate, WardUpdate, long, WardResponse, object, object>
 {
-    Task<Ward> WardGet(int id);
+    Task<Ward> WardGet(long id);
 }

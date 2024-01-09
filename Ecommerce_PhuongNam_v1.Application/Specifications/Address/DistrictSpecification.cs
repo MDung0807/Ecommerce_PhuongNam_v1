@@ -7,7 +7,7 @@ namespace Ecommerce_PhuongNam.Address.Address.Application.Specification;
 
 public sealed class DistrictSpecification : BaseSpecification<District>
 {
-    public DistrictSpecification(int id) : base(x => x.Id.Equals(id))
+    public DistrictSpecification(long id) : base(x => x.Id.Equals(id))
     {
         AddInclude(x => x.Wards);
         AddInclude(x => x.Province);
@@ -16,7 +16,7 @@ public sealed class DistrictSpecification : BaseSpecification<District>
 
     }
     
-    public DistrictSpecification(int id, int idProvince) : base(x => x.Province.Id.Equals(id))
+    public DistrictSpecification(long id, long idProvince) : base(x => x.Province.Id.Equals(id))
     {
         AddInclude(x => x.Province);
         AddInclude(x => x.AdministrativeUnit);

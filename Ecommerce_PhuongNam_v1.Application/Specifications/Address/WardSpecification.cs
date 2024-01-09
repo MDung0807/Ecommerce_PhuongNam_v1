@@ -4,7 +4,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Specifications.Address
 {
     public sealed class WardSpecification : BaseSpecification<Ward>
     {
-        public WardSpecification(int id) : base(x => x.Id.Equals(id))
+        public WardSpecification(long id) : base(x => x.Id.Equals(id))
         {
             AddInclude(x => x.District);
             AddInclude(x => x.AdministrativeUnit);

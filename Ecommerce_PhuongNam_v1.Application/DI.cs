@@ -39,6 +39,7 @@ public static class DI
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddHttpContextAccessor();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DI).Assembly));
         
         services.AddSwaggerGen(c =>
         {

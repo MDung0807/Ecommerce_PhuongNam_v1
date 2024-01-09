@@ -27,7 +27,7 @@ public class WardService : IWardService
         _repository = unitOfWork.GenericRepository<Ward, long>();
         _mapper = mapper;
     }
-    public async Task<WardResponse> GetById(int id)
+    public async Task<WardResponse> GetById(long id)
     {
         Ward ward = await WardGet(id);
         return _mapper.Map<WardResponse>(ward);
@@ -38,14 +38,14 @@ public class WardService : IWardService
         throw new NotImplementedException();
     }
 
-    public async Task<bool> Update(WardUpdate entity, int id, int userId)
+    public async Task<bool> Update(WardUpdate entity, long id, long userId)
     {
         Ward ward = _mapper.Map<Ward>(entity);
         await _repository.Update(ward);
         return true;
     }
 
-    public async Task<bool> Delete(int id, int userId)
+    public async Task<bool> Delete(long id, long userId)
     {
         WardSpecification wardSpecification = new WardSpecification(id);
         Ward ward = await _repository.Get(wardSpecification, checkStatus: false);
@@ -54,34 +54,34 @@ public class WardService : IWardService
         return true;
     }
 
-    public async Task<bool> Create(WardCreate entity, int userId)
+    public async Task<bool> Create(WardCreate entity, long userId)
     {
         Ward ward = _mapper.Map<Ward>(entity);
         await _repository.Create(ward);
         return true;
     }
 
-    public Task<bool> ChangeIsActive(int id, int userId)
+    public Task<bool> ChangeIsActive(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeIsLock(int id, int userId)
+    public Task<bool> ChangeIsLock(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeToWaiting(int id, int userId)
+    public Task<bool> ChangeToWaiting(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> ChangeToDisable(int id, int userId)
+    public Task<bool> ChangeToDisable(long id, long userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> CheckToExistById(int id)
+    public Task<bool> CheckToExistById(long id)
     {
         throw new NotImplementedException();
     }
@@ -101,12 +101,12 @@ public class WardService : IWardService
         throw new NotImplementedException();
     }
 
-    public Task<object> GetAll(object pagingRequest, int idMaster)
+    public Task<object> GetAll(object pagingRequest, long idMaster)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> DeleteHard(int id)
+    public Task<bool> DeleteHard(long id)
     {
         throw new NotImplementedException();
     }
@@ -116,7 +116,7 @@ public class WardService : IWardService
         throw new NotImplementedException();
     }
 
-    public async Task<Ward> WardGet(int id)
+    public async Task<Ward> WardGet(long id)
     {
         WardSpecification wardSpecification = new WardSpecification(id);
         Ward ward = await _repository.Get(wardSpecification);
