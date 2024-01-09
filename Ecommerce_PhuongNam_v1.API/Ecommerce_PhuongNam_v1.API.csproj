@@ -12,4 +12,13 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Ecommerce_PhuongNam_v1.Application\Ecommerce_PhuongNam_v1.Application.csproj" />
+      <ProjectReference Include="..\Ecommerce_PhuongNam_v1.Infrastructure\Ecommerce_PhuongNam_v1.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

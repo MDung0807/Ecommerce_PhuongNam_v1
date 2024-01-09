@@ -30,7 +30,7 @@
         /// <param name="id">Primary key in Entity</param>
         /// <param name="userId">ID User</param>
         /// <returns></returns>
-        Task<bool> Update(TUpdate entity, TId id, int userId);
+        Task<bool> Update(TUpdate entity, TId id, TId userId);
         
         /// <summary>
         /// Update status to entity
@@ -38,7 +38,7 @@
         /// <param name="id"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<bool> Delete(TId id, int userId);
+        Task<bool> Delete(TId id, TId userId);
 
         /// <summary>
         /// Handling insert data into database
@@ -46,7 +46,7 @@
         /// <param name="entity">Is Entity</param>
         /// <param name="userId">Is Id for User</param>
         /// <returns></returns>
-        Task<bool> Create(TCreate entity, int userId);
+        Task<bool> Create(TCreate entity, TId userId);
 
         /// <summary>
         /// Change status is active
@@ -54,7 +54,7 @@
         /// <param name="id">primary key entity</param>
         /// <param name="userId">userId</param>
         /// <returns></returns>
-        Task<bool> ChangeIsActive(TId id, int userId);
+        Task<bool> ChangeIsActive(TId id, TId userId);
         
         /// <summary>
         /// Change status is Lock
@@ -62,7 +62,7 @@
         /// <param name="id">primary key entity</param>
         /// <param name="userId">userId</param>
         /// <returns></returns>
-        Task<bool> ChangeIsLock(TId id, int userId);
+        Task<bool> ChangeIsLock(TId id, TId userId);
         
         /// <summary>
         /// Change status is Waiting
@@ -70,7 +70,7 @@
         /// <param name="id">primary key entity</param>
         /// <param name="userId">userId</param>
         /// <returns></returns>
-        Task<bool> ChangeToWaiting(TId id, int userId);
+        Task<bool> ChangeToWaiting(TId id, TId userId);
         
         /// <summary>
         /// Change status is diable
@@ -78,7 +78,7 @@
         /// <param name="id">primary key entity</param>
         /// <param name="userId">userId</param>
         /// <returns></returns>
-        Task<bool> ChangeToDisable(TId id, int userId);
+        Task<bool> ChangeToDisable(TId id, TId userId);
 
         /// <summary>
         /// Check is exist

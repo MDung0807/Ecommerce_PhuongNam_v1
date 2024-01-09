@@ -1,4 +1,5 @@
-﻿using Ecommerce_PhuongNam_v1.Application.Interfaces;
+﻿using Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
+using Ecommerce_PhuongNam_v1.Application.Interfaces;
 using Ecommerce_PhuongNam_v1.Infrastructure.Data.Configs;
 using Ecommerce_PhuongNam_v1.Infrastructure.Repositories;
 using Ecommerce_PhuongNam.Common.Repositories.Interfaces;
@@ -52,6 +53,7 @@ public static class DI
 
         private static void AddServices(this IServiceCollection services)
         {
-            
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 }
