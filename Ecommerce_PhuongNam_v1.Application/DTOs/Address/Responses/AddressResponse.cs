@@ -2,10 +2,10 @@
 
 public class AddressResponse
 {
-    public int WardId { get; set; }
+    public long WardId { get; set; }
     public string FullNameWard { get; set; }
-    public int DistrictId { get; set; }
+    public long DistrictId { get; set; }
     public string FullNameDistrict { get; set; }
-    public int ProvinceId { get; set; }
+    public long ProvinceId { get; set; }
     public string FullNameProvince { get; set; }
 }
