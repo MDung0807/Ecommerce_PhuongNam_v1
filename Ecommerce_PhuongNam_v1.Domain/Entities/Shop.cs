@@ -10,6 +10,7 @@ public class Shop : BaseEntity<Guid>
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
 
+    public Account Account { get; set; }
     public ICollection<Product> Products { get; set; }
     public ICollection<ReviewReply> Replies { get; set; }
     public ICollection<AddressDetail> AddressDetails { get; set; }

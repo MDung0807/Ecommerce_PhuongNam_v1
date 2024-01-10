@@ -1,4 +1,4 @@
-﻿using BusBookTicket.Core.Models.Entity;
+﻿using Ecommerce_PhuongNam_v1.Domain.Entities;
 using Ecommerce_PhuongNam_v1.Infrastructure.Data.Configs.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -16,9 +16,5 @@ public class AccountConfig : BaseEntityConfig<Guid>, IEntityTypeConfiguration<Ac
         builder.Property(x => x.Password)
             .IsRequired();
         builder.HasAlternateKey(x => x.Username);
-
-        builder.HasOne(x => x.Customer)
-            .WithOne(x => x.Account)
-            .HasForeignKey<Account>("CustomerId");
     }
 }

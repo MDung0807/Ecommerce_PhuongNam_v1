@@ -1,8 +1,6 @@
 ﻿using Ecommerce_PhuongNam_v1.Domain.Common;
-using Ecommerce_PhuongNam_v1.Domain.Entities;
-using Ecommerce_PhuongNam.Common.Entities;
 
-namespace BusBookTicket.Core.Models.Entity
+namespace Ecommerce_PhuongNam_v1.Domain.Entities
 {
     public class Customer : BaseEntity<Guid>
     {
@@ -14,6 +12,7 @@ namespace BusBookTicket.Core.Models.Entity
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Gender { get; set; }
+        public string Avatar { get; set; }
         #endregion -- configs property --
 
         #region -- RelationShip--

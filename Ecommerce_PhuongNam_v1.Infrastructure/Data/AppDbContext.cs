@@ -1,4 +1,4 @@
-﻿using BusBookTicket.Core.Models.Entity;
+﻿using BusBookTicket.Core.Models.EntityFW.Configurations;
 using Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
 using Ecommerce_PhuongNam_v1.Domain.Common;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
@@ -32,6 +32,7 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration<Offer>(new OfferConfigs());
         modelBuilder.ApplyConfiguration<Order>(new OrderConfigs());
         modelBuilder.ApplyConfiguration<OrderItem>(new OrderItemConfigs());
+        modelBuilder.ApplyConfiguration<OtpCode>(new OtpCodeConfigs());
         modelBuilder.ApplyConfiguration<PaymentMethod>(new PaymentMethodConfigs());
         modelBuilder.ApplyConfiguration<Product>(new ProductConfigs());
         modelBuilder.ApplyConfiguration<ProductImage>(new ProductImageConfig());
@@ -55,7 +56,7 @@ public class AppDbContext : DbContext
     }
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        foreach (EntityEntry<BaseEntity<string>> entry in ChangeTracker.Entries<BaseEntity<string>>())
+        foreach (EntityEntry<BaseEntity<Guid>> entry in ChangeTracker.Entries<BaseEntity<Guid>>())
         {
             switch (entry.State)
             {
@@ -93,6 +94,7 @@ public class AppDbContext : DbContext
     public DbSet<Offer> Offers { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<OrderItem> OtpCodes { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductImage> ProductImages { get; set; }

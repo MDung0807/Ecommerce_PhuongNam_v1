@@ -9,5 +9,8 @@ public class ShopConfigs : BaseEntityConfig<Guid>, IEntityTypeConfiguration<Shop
 {
     public void Configure(EntityTypeBuilder<Shop> builder)
     {
+        builder.HasOne(x => x.Account)
+            .WithOne(x => x.Shop)
+            .HasForeignKey<Shop>("AccountId");
     }
 }

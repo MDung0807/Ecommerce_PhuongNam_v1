@@ -1,7 +1,7 @@
-﻿using BusBookTicket.CustomerManage.DTOs.Requests;
+﻿using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using FluentValidation;
 
-namespace BusBookTicket.CustomerManage.Validator;
+namespace Ecommerce_PhuongNam_v1.Application.Validators.Customer;
 
 public class FormRegisterValidator : AbstractValidator<FormRegister>
 {
@@ -26,9 +26,9 @@ public class FormRegisterValidator : AbstractValidator<FormRegister>
         // RuleFor(x => x.Gender)
         //     .Empty();
 
-        RuleFor(x => x.WardId);
-
-        RuleFor(x => x.Avatar);
+        // RuleFor(x => x.WardId);
+        //
+        // RuleFor(x => x.Avatar);
 
         RuleFor(x => x.Username)
             .NotEmpty().WithMessage("is required")

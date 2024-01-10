@@ -1,5 +1,5 @@
 ﻿using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.District;
-using Ecommerce_PhuongNam_v1.Application.Interfaces.Address;
+using Ecommerce_PhuongNam_v1.Application.Interfaces;
 using MediatR;
 
 namespace Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.District;

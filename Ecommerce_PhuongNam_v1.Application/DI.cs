@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Ecommerce_PhuongNam_v1.Application.Common.Mapper;
-using Ecommerce_PhuongNam_v1.Application.Interfaces.Address;
-using Ecommerce_PhuongNam_v1.Application.Services.Address;
+using Ecommerce_PhuongNam_v1.Application.Interfaces;
+using Ecommerce_PhuongNam_v1.Application.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;

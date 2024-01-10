@@ -1,5 +1,4 @@
 ﻿using System.Data.SqlTypes;
-using BusBookTicket.Core.Models.Entity;
 using Ecommerce_PhuongNam_v1.Domain.Common;
 using Ecommerce_PhuongNam.Common.Entities;
 

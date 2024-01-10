@@ -9,7 +9,7 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Ward;
 using Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.District;
 using Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.Province;
 using Ecommerce_PhuongNam_v1.Application.Features.Queries.Address.Ward;
-using Ecommerce_PhuongNam_v1.Application.Interfaces.Address;
+using Ecommerce_PhuongNam_v1.Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

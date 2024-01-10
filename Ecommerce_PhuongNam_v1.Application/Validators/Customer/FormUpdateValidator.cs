@@ -1,7 +1,7 @@
-﻿using BusBookTicket.CustomerManage.DTOs.Requests;
+﻿using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using FluentValidation;
 
-namespace BusBookTicket.CustomerManage.Validator;
+namespace Ecommerce_PhuongNam_v1.Application.Validators.Customer;
 
 public class FormUpdateValidator : AbstractValidator<FormUpdate>
 {

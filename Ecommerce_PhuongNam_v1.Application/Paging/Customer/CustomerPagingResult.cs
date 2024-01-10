@@ -1,7 +1,6 @@
-﻿using BusBookTicket.Core.Application.Paging;
-using BusBookTicket.CustomerManage.DTOs.Responses;
+﻿using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 
-namespace BusBookTicket.CustomerManage.Paging;
+namespace Ecommerce_PhuongNam_v1.Application.Paging.Customer;
 
 public class CustomerPagingResult : PagingResult<CustomerResponse>
 { 

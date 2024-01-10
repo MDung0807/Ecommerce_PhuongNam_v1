@@ -4,7 +4,7 @@ public class AppConstants
 {
     public const string ADMIN = "ADMIN";
     public const string CUSTOMER = "CUSTOMER";
-    public const string COMPANY = "COMPANY";
+    public const string SHOP = "SHOP";
 
     public const string ERROR = "Have error in prosses";
     public const string NOT_FOUND = "Not found data";
@@ -13,4 +13,6 @@ public class AppConstants
     public const string WAITING = "Wating";
     public const string LOCKED_RESOURCE = "Resource has been locked";
     public const string SUCCESS = "SUCCESS";
+
+    public const string OTP_NOT_AUTH = "OTP not yet confirm";
 }

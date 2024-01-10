@@ -1,6 +1,7 @@
-﻿using BusBookTicket.AddressManagement.DTOs.Responses;
+﻿
+using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses;
 
-namespace BusBookTicket.CustomerManage.DTOs.Responses
+namespace Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses
 {
     public class ProfileResponse
     {
@@ -15,7 +16,7 @@ namespace BusBookTicket.CustomerManage.DTOs.Responses
         public string RoleName { get; set; }
         public string Username { get; set; }
         public string Rank { get; set; }
-        public int WardId { get; set; }
+        public long WardId { get; set; }
         public AddressResponse AddressResponse { get; set; }
     }
 }

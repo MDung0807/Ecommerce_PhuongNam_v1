@@ -1,8 +1,8 @@
-﻿namespace BusBookTicket.CustomerManage.DTOs.Responses
+﻿namespace Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses
 {
     public class CustomerResponse
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }

@@ -1,16 +1,16 @@
-﻿using BusBookTicket.Core.Application.Specification;
-using BusBookTicket.Core.Models.Entity;
-using BusBookTicket.Core.Utils;
-using BusBookTicket.CustomerManage.Paging;
+﻿using Ecommerce_PhuongNam_v1.Application.Common.Constants;
+using Ecommerce_PhuongNam_v1.Application.Common.Enums;
+using Ecommerce_PhuongNam_v1.Application.Paging.Customer;
 
-namespace BusBookTicket.CustomerManage.Specification;
+namespace Ecommerce_PhuongNam_v1.Application.Specifications.Customer;
 
-public sealed class CustomerSpecification : BaseSpecification<Customer>
+public sealed class CustomerSpecification : BaseSpecification<Domain.Entities.Customer>
 {
-    public CustomerSpecification(CustomerPaging paging = null, bool checkStatus = true) : base(x => x.Account.Role.RoleName == AppConstants.CUSTOMER, checkStatus)
+    public CustomerSpecification(CustomerPaging paging = null, bool checkStatus = true) : base(x => x.Account.RoleAccounts.Any(r => r.Role.Name ==AppConstants.CUSTOMER) , checkStatus)
     {
         AddInclude(x => x.Account);
-        AddInclude(x => x.Account.Role);
+        AddInclude(x => x.Account.RoleAccounts);
+        AddInclude("RoleAccounts.Role");
         AddInclude(x => x.Rank);
 
         if (paging != null)
@@ -19,7 +19,7 @@ public sealed class CustomerSpecification : BaseSpecification<Customer>
         }
     }
 
-    public CustomerSpecification(int id, bool checkStatus = true, bool getAll = true) : base(x => x.Id == id, checkStatus: checkStatus)
+    public CustomerSpecification(Guid id, bool checkStatus = true, bool getAll = true) : base(x => x.Id.Equals(id), checkStatus: checkStatus)
     {
         if (!getAll)
         {
@@ -27,10 +27,14 @@ public sealed class CustomerSpecification : BaseSpecification<Customer>
             return;
         }
         AddInclude(x => x.Account);
-        AddInclude(x => x.Account.Role);
+        AddInclude(x => x.Account.RoleAccounts);
+        AddInclude("RoleAccounts.Role");
         AddInclude(x => x.Rank);
-        AddInclude(x => x.Ward);
-    }public CustomerSpecification(string email, bool checkStatus = true, bool isDelete = false) 
+        AddInclude(x => x.AddressDetails);
+        AddInclude("AddressDetails.Ward");
+    }
+    
+    public CustomerSpecification(string email, bool checkStatus = true, bool isDelete = false) 
         : base(x => x.Email == email 
                     || (checkStatus == false && isDelete == true && x.Status == (int)EnumsApp.Waiting), checkStatus)
     {
@@ -40,7 +44,8 @@ public sealed class CustomerSpecification : BaseSpecification<Customer>
             return;
         }
         AddInclude(x => x.Account);
-        AddInclude(x => x.Account.Role);
+        AddInclude(x => x.Account.RoleAccounts);
+        AddInclude("RoleAccounts.Role");
         AddInclude(x => x.Rank);
     }
 }

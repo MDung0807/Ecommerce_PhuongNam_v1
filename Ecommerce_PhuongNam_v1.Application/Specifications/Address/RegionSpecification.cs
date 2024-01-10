@@ -4,7 +4,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Specifications.Address;
 
 public sealed class RegionSpecification : BaseSpecification<AdministrativeRegion>
 {
-    public RegionSpecification(int id) : base(x => x.Id.Equals(id))
+    public RegionSpecification(long id) : base(x => x.Id.Equals(id))
     {
         AddInclude(x => x.Provinces);
     }

@@ -1,6 +1,4 @@
-﻿using BusBookTicket.Core.Application.Paging;
-
-namespace BusBookTicket.CustomerManage.Paging;
+﻿namespace Ecommerce_PhuongNam_v1.Application.Paging.Customer;
 
 public class CustomerPaging : PagingRequest
 {

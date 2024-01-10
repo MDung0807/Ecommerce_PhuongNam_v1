@@ -1,4 +1,4 @@
-﻿using BusBookTicket.Core.Models.Entity;
+﻿using Ecommerce_PhuongNam_v1.Domain.Entities;
 using Ecommerce_PhuongNam_v1.Infrastructure.Data.Configs.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,6 +13,8 @@ public class CustomerConfigs : BaseEntityConfig<Guid>, IEntityTypeConfiguration<
         builder.HasOne(x => x.Rank)
             .WithMany(x => x.Customers)
             .HasForeignKey("RankId");
-        
+        builder.HasOne(x => x.Account)
+            .WithOne(x => x.Customer)
+            .HasForeignKey<Customer>("AccountId");
     }
 }

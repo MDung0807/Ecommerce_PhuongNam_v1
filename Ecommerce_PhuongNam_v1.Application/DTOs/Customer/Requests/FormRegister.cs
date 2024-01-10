@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace BusBookTicket.CustomerManage.DTOs.Requests
+namespace Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests
 {
     [ValidateNever]
     public class FormRegister
@@ -13,8 +13,6 @@ namespace BusBookTicket.CustomerManage.DTOs.Requests
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Gender { get; set; }
-        public int WardId { get; set; }
-        public IFormFile Avatar { get; set; }
         #endregion -- Customer --
 
         #region -- Account --

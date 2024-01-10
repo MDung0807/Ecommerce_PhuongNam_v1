@@ -1,9 +1,6 @@
-﻿
-using Ecommerce_PhuongNam_v1.Domain.Common;
-using Ecommerce_PhuongNam_v1.Domain.Entities;
-using Ecommerce_PhuongNam.Common.Entities;
+﻿using Ecommerce_PhuongNam_v1.Domain.Common;
 
-namespace BusBookTicket.Core.Models.Entity
+namespace Ecommerce_PhuongNam_v1.Domain.Entities
 {
     public class Account: BaseEntity<Guid>
     {
