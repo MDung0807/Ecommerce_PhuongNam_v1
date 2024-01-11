@@ -13,6 +13,6 @@ public class ShippingMethod : BaseEntity<Guid>
     public decimal MaxLenght { get; set; }
 
     #region -- Relationship --
-    public ICollection<Order> Orders { get; set; }
+    public HashSet<Order> Orders { get; set; }
     #endregion -- Relationship --
 }

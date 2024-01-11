@@ -13,9 +13,9 @@ public class Product : BaseEntity<Guid>
     #region -- Relationship --
     public Brand Brand { get; set; }
     public Category Category { get; set; }
-    public ICollection<Review> Reviews { get; set; }
-    public ICollection<ProductImage> ProductImages { get; set; }    
-    public ICollection<Variant> Variants { get; set; }
+    public HashSet<Review> Reviews { get; set; }
+    public HashSet<ProductImage> ProductImages { get; set; }    
+    public HashSet<Variant> Variants { get; set; }
     public Shop Shop { get; set; }
     #endregion -- Relationship --
 }

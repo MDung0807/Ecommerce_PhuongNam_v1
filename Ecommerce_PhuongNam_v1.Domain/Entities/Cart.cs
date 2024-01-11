@@ -6,5 +6,5 @@ namespace Ecommerce_PhuongNam_v1.Domain.Entities;
 public class Cart : BaseEntity<Guid>
 {
     public Customer Customer { get; set; }
-    public ICollection<CartItem> CartItems { get; set; }
+    public HashSet<CartItem> CartItems { get; set; }
 }

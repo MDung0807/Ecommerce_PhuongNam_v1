@@ -18,13 +18,13 @@ namespace Ecommerce_PhuongNam_v1.Domain.Entities
         #region -- RelationShip--
 
         public Account Account { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public HashSet<Review> Reviews { get; set; }
         public Rank Rank { get; set; }
         public Cart Cart { get; set; }
-        public ICollection<AddressDetail> AddressDetails { get; set; }
-        public ICollection<Offer> Offers { get; set; }
-        public ICollection<ReviewReply>Replies { get; set; }
-        public ICollection<UserFollowShop> UserFollowShops { get; set; }
+        public HashSet<AddressDetail> AddressDetails { get; set; }
+        public HashSet<Offer> Offers { get; set; }
+        public HashSet<ReviewReply>Replies { get; set; }
+        public HashSet<UserFollowShop> UserFollowShops { get; set; }
         #endregion -- RelationShip --
     }
 }

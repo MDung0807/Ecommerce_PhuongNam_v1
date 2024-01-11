@@ -13,10 +13,10 @@ public class Variant : BaseEntity<Guid>
 
     #region --Relationship --
     public Product Product { get; set; }
-    public ICollection<Specification> Specifications { get; set; }    
-    public ICollection<CartItem> CartItems { get; set; }
-    public ICollection<Offer> Offers { get; set; }
-    public ICollection<OrderItem> OrderItems { get; set; }
+    public HashSet<Specification> Specifications { get; set; }    
+    public HashSet<CartItem> CartItems { get; set; }
+    public HashSet<Offer> Offers { get; set; }
+    public HashSet<OrderItem> OrderItems { get; set; }
     #endregion --Relationship --
     
 }

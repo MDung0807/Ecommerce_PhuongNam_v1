@@ -13,6 +13,6 @@ public class Order : BaseEntity<Guid>
     public AddressDetail ToAddress { get; set; }
     public ShippingMethod ShippingMethod { get; set; }
     public PaymentMethod PaymentMethod { get; set; }
-    public ICollection<OrderItem> OrderItems { get; set; }
+    public HashSet<OrderItem> OrderItems { get; set; }
     #endregion -- Relationship --
 }

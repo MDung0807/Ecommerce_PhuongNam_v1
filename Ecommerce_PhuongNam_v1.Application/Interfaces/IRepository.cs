@@ -39,7 +39,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Interfaces
         /// <param name="status"></param>
         /// <param name="listObjectNotChange">List object not change status</param>
         /// <returns></returns>
-        Task<bool> ChangeStatus(object entity, int status, List<Dictionary<string, int>> listObjectNotChange = null);
+        Task<bool> ChangeStatus(object entity, int status, List<Dictionary<string, TId>> listObjectNotChange = null);
 
         /// <summary>
         /// Check data is exist in database

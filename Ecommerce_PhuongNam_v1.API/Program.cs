@@ -1,6 +1,7 @@
 
 
 using Ecommerce_PhuongNam_v1.Application;
+using Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ app.UseCors(options =>
     options.AllowAnyMethod();
     options.AllowAnyHeader();
 });
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 if (app.Environment.IsDevelopment())

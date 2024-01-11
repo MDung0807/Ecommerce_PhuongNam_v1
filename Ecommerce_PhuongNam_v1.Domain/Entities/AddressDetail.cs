@@ -12,8 +12,8 @@ public class AddressDetail : BaseEntity<Guid>
     public Customer Customer { get; set; }
     public Shop Shop { get; set; }
     public Ward Ward { get; set; }
-    public ICollection<Order> Sends { get; set; }
-    public ICollection<Order> Recevices { get; set; }
+    public HashSet<Order> Sends { get; set; }
+    public HashSet<Order> Recevices { get; set; }
 
     #endregion -- Relationship --
 }

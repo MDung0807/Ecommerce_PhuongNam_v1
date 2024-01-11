@@ -24,6 +24,7 @@ public sealed class CustomerSpecification : BaseSpecification<Domain.Entities.Cu
         if (!getAll)
         {
             AddInclude(x => x.Account);
+            AddInclude(x => x.Account.RoleAccounts);
             return;
         }
         AddInclude(x => x.Account);
@@ -41,11 +42,13 @@ public sealed class CustomerSpecification : BaseSpecification<Domain.Entities.Cu
         if (isDelete)
         {
             AddInclude(x => x.Account);
+            AddInclude(x => x.Account.RoleAccounts);
+            AddInclude(x => x.Account.Auths);
             return;
         }
         AddInclude(x => x.Account);
         AddInclude(x => x.Account.RoleAccounts);
-        AddInclude("RoleAccounts.Role");
+        // AddInclude("RoleAccounts.Role");
         AddInclude(x => x.Rank);
     }
 }

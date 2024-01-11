@@ -12,8 +12,8 @@ namespace Ecommerce_PhuongNam_v1.Domain.Entities
         #region -- Relationship ---
         public Customer Customer { get; set; }
         public Shop Shop { get; set; }
-        public ICollection<RoleAccount> RoleAccounts { get; set; }
-        public ICollection<Auth> Auths { get; set; }
+        public HashSet<RoleAccount> RoleAccounts { get; set; }
+        public HashSet<Auth> Auths { get; set; }
         #endregion -- Relationship ---
 
     }

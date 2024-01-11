@@ -17,7 +17,7 @@ public class Province : BaseEntity<long>
     #region -- Relationship --
     public AdministrativeRegion AdministrativeRegion { get; set; }
     public AdministrativeUnit AdministrativeUnit { get; set; }
-    public ICollection<District> Districts { get; set; }
+    public HashSet<District> Districts { get; set; }
 
     #endregion -- Relationship --
 }

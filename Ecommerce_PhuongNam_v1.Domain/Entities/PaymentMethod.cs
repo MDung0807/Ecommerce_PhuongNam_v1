@@ -6,5 +6,5 @@ namespace Ecommerce_PhuongNam_v1.Domain.Entities;
 public class PaymentMethod : BaseEntity<Guid>
 {
     public string Name { get; set; }
-    public ICollection<Order> Orders { get; set; }
+    public HashSet<Order> Orders { get; set; }
 }

@@ -1,4 +1,7 @@
-﻿using Ecommerce_PhuongNam_v1.Application.Interfaces;
+﻿using CloudinaryDotNet;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Responses;
+using Ecommerce_PhuongNam_v1.Application.Interfaces;
 
 namespace Ecommerce_PhuongNam_v1.Application.Services;
 
@@ -75,6 +78,31 @@ public class AuthService : IAuthService
     }
 
     public Task<bool> DeleteHard(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AuthResponse> Login(AuthRequest request)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Account> GetAccountByUsername(string username, string roleName, bool checkStatus = true)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> ResetPass(FormResetPass request, Guid userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AuthResponse> RefreshToken(RefreshTokenRequest request)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Account> GetAccountByUsername(string username, bool checkStatus = true)
     {
         throw new NotImplementedException();
     }

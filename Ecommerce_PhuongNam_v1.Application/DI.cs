@@ -1,10 +1,19 @@
 ﻿using AutoMapper;
+using Ecommerce_PhuongNam_v1.Application.Common.Cloudinary;
+using Ecommerce_PhuongNam_v1.Application.Common.MailKet.Service;
 using Ecommerce_PhuongNam_v1.Application.Common.Mapper;
+using Ecommerce_PhuongNam_v1.Application.Common.OTP.Services;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.Interfaces;
 using Ecommerce_PhuongNam_v1.Application.Services;
+using Ecommerce_PhuongNam_v1.Application.Validators.Customer;
+using Ecommerce_PhuongNam_v1.Domain.Entities;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using AddressDetail = Ecommerce_PhuongNam_v1.Application.Services.AddressDetail;
 
 namespace Ecommerce_PhuongNam_v1.Application;
 
@@ -22,9 +31,17 @@ public static class DI
             .AddScoped<IUnitService, UnitService>()
             .AddScoped<IProvinceService, ProvinceService>()
             .AddScoped<IDistrictService, DistrictService>()
-            .AddScoped<IWardService, WardService>();
-        
- 
+            .AddScoped<IWardService, WardService>()
+            .AddScoped<ICustomerService, CustomerService>()
+            .AddScoped<IAccountService, AccountService>()
+            .AddScoped<IAddressDetail, AddressDetail>()
+            .AddScoped<IAuthService, AuthService>()
+            .AddScoped<IRoleService, RoleService>()
+            .AddScoped<IRoleAccountService, RoleAccountService>()
+            .AddScoped<IOtpService, OtpService>()
+            .AddScoped<IMailService, MailService>()
+            .AddSingleton<CloudImageService>()
+            ;
         #endregion -- Scoped --
         
         #region -- Config auto mapping --

@@ -7,5 +7,5 @@ public class Rank : BaseEntity<Guid>
 {
     public string Name { get; set; }
     public int Level { get; set; }
-    public ICollection<Customer> Customers { get; set; }
+    public HashSet<Customer> Customers { get; set; }
 }

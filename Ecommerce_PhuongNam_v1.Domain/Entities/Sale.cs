@@ -13,5 +13,5 @@ public class Sale : BaseEntity<Guid>
     public DateTime DateEnd { get; set; }
     public double Discount { get; set; }
     public long TotalSold { get; set; }
-    public ICollection<Product> Products { get; set; }
+    public HashSet<Product> Products { get; set; }
 }

@@ -20,8 +20,8 @@ public class AuthControllers
     [Route("api/auth")]
     public class AuthController  : ControllerBase
     {
-        private IMapper _mapper;
-        private ISender _sender;
+        private readonly IMapper _mapper;
+        private readonly ISender _sender;
 
         public AuthController(IMapper mapper, ISender sender)
         {

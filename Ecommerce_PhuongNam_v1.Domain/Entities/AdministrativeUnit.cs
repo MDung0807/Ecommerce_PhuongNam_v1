@@ -17,8 +17,8 @@ public class AdministrativeUnit : BaseEntity<long>
     #endregion -- Properties --
 
     #region -- Relationship --
-    public ICollection<Province> Provinces { get; set; }
-    public ICollection<District> Districts { get; set; }
-    public ICollection<Ward> Wards { get; set; }
+    public HashSet<Province> Provinces { get; set; }
+    public HashSet<District> Districts { get; set; }
+    public HashSet<Ward> Wards { get; set; }
     #endregion -- Relationship --
 }

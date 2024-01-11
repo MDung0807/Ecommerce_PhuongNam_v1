@@ -1,5 +1,4 @@
-﻿using BusBookTicket.Core.Common.Exceptions;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 
 namespace Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
 

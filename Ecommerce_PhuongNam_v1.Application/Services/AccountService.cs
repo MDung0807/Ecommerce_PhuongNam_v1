@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 using AutoMapper;
-using BusBookTicket.Core.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Application.Common.Constants;
 using Ecommerce_PhuongNam_v1.Application.Common.Enums;
 using Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
@@ -43,7 +42,6 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
         {
             try
             {
-                await _unitOfWork.BeginTransaction();
                 Account account = _mapper.Map<Account>(request);
                 Role role = await _roleService.GetRole(request.RoleName);
                 account.Password = PassEncrypt.HashPassword(request.Password);
@@ -57,11 +55,9 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                 };
 
                 await _roleAccountService.Create(roleAccount);
-                await _unitOfWork.SaveChangesAsync();
             }
             catch (Exception e)
             {
-                await _unitOfWork.RollbackTransactionAsync();
                 Console.WriteLine(e);
                 throw;
             }

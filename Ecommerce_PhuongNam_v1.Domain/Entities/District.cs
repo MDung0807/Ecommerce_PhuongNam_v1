@@ -16,7 +16,7 @@ public class District : BaseEntity<long>
     #endregion -- Properties --
 
     #region -- RelationShip --
-    public ICollection<Ward> Wards { get; set; }
+    public HashSet<Ward> Wards { get; set; }
     public AdministrativeUnit AdministrativeUnit { get; set; }
     public Province Province { get; set; }
     #endregion -- RelationShip --

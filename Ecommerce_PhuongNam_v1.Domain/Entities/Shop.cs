@@ -11,8 +11,8 @@ public class Shop : BaseEntity<Guid>
     public string PhoneNumber { get; set; }
 
     public Account Account { get; set; }
-    public ICollection<Product> Products { get; set; }
-    public ICollection<ReviewReply> Replies { get; set; }
-    public ICollection<AddressDetail> AddressDetails { get; set; }
-    public ICollection<UserFollowShop> UserFollowShops { get; set; }
+    public HashSet<Product> Products { get; set; }
+    public HashSet<ReviewReply> Replies { get; set; }
+    public HashSet<AddressDetail> AddressDetails { get; set; }
+    public HashSet<UserFollowShop> UserFollowShops { get; set; }
 }

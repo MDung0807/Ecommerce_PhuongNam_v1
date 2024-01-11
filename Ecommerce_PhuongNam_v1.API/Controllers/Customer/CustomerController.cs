@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Ecommerce_PhuongNam_v1.Application.Common.Constants;
-using Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
 using Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Models;
 using Ecommerce_PhuongNam_v1.Application.Common.Responses;
@@ -17,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce_PhuongNam_v1.API.Controllers.Customer;
 
-[Route("api/Customer")]
+[Route("api/Customers")]
 [ApiController]
 public class CustomerController : ControllerBase
 {
@@ -33,13 +32,13 @@ public class CustomerController : ControllerBase
     #region -- Controllers --
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<IActionResult>Register([FromForm] FormRegister register)
+    public async Task<IActionResult>Register([FromBody] FormRegister register)
     {
         var validator = new FormRegisterValidator();
         var result = await validator.ValidateAsync(register);
         if (!result.IsValid)
         {
-            throw new ValidatorException(result.Errors);
+            throw new ValidatorException (result.Errors);
         }
         register.RoleName = AppConstants.CUSTOMER;
         var status = await _sender.Send(_mapper.Map<CreateCustomer>(register));
@@ -81,7 +80,7 @@ public class CustomerController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> AuthOtpCode([FromBody] OtpRequest request)
     {
-        var status = await _sender.Send(new AuthOTP());
+        var status = await _sender.Send(_mapper.Map<AuthOTP>(request));
         return Ok(new Response<string>(!status, "response"));
     }
 

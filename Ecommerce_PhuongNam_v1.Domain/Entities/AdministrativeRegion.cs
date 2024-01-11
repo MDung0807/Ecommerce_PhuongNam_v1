@@ -16,7 +16,7 @@ public class AdministrativeRegion : BaseEntity<long>
 
     #region -- Relationship --
 
-    public ICollection<Province> Provinces { get; set; }
+    public HashSet<Province> Provinces { get; set; }
 
     #endregion -- Relationship --
 }

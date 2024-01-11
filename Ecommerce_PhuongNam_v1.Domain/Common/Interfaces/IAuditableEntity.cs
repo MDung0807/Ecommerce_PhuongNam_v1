@@ -1,7 +1,7 @@
 ﻿namespace Ecommerce_PhuongNam.Common.Entities.Interfaces;
 
-public interface IAuditableEntity<T>
+public interface IAuditableEntity
 {
-    T CreateBy { get; set; }
-    T UpdateBy { get; set; }
+    string CreateBy { get; set; }
+    string UpdateBy { get; set; }
 }

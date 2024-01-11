@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BusBookTicket.Auth.Exceptions;
-using BusBookTicket.Core.Common;
-using BusBookTicket.Core.Common.Exceptions;
-using BusBookTicket.CustomerManage.Exceptions;
+﻿using Ecommerce_PhuongNam_v1.Application.Common.Responses;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using SendGrid.Helpers.Errors.Model;
-using NotFoundException = BusBookTicket.Core.Common.Exceptions.NotFoundException;
 
-namespace BusBookTicket.Exceptions
+namespace Ecommerce_PhuongNam_v1.Application.Common.Exceptions
 {
     public class ExceptionMiddleware
     {
@@ -49,12 +41,7 @@ namespace BusBookTicket.Exceptions
                     JsonConvert.SerializeObject(new Response<string>(true, authException.message)));
             
             }
-            catch (CustomerException ex)
-            {
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new Response<string>(true, ex.message)));
-            }
+            
             catch (UnauthorizedAccessException ex)
             {
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized;
@@ -85,13 +72,6 @@ namespace BusBookTicket.Exceptions
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
                 context.Response.ContentType = "application/json";
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(new Response<List<string>>(true, ex.Errors)));
-            }
-            catch (BadRequestException ex)
-            {
-                context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new Response<string>(true, ex.Message)));
-            
             }
             catch (LockedResource ex)
             {

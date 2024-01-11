@@ -10,7 +10,7 @@ public class Role : BaseEntity<Guid>
 
     #region -- Relationship --
 
-    public ICollection<RoleAccount> RoleAccounts { get; set; }
+    public HashSet<RoleAccount> RoleAccounts { get; set; }
 
     #endregion -- Relationship --
 }

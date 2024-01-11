@@ -25,10 +25,10 @@ public class OtpService : IOtpService
         if (otp == null)
             otp = new OtpCode();
         otp.Email = request.Email;
+        otp.PhoneNumber = request.PhoneNumber;
         string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };  
   
-        string sRandomOtp = GenerateRandomOtp(8, saAllowedCharacters);
-        otp.Code = sRandomOtp;
+        otp.Code = GenerateRandomOtp(8, saAllowedCharacters);
         otp.Status = (int)EnumsApp.Active;
 
         otp = await _repository.CreateOrUpdate(otp);
@@ -38,7 +38,7 @@ public class OtpService : IOtpService
     public async Task<bool> AuthenticationOtp(OtpRequest request)
     {
         DateTime dateTimeNow = DateTime.Now;
-        int expired = 10; // expired 10 minute
+        int expired = 1000; // expired 10 minute
         OtpSpecification specification = new OtpSpecification(request.Email, dateTime:dateTimeNow, minute:expired, false);
         OtpCode otp = await _repository.Get(specification, checkStatus: false);
         if (otp != null && otp.Code == request.Code)
@@ -48,27 +48,14 @@ public class OtpService : IOtpService
     
     private string GenerateRandomOtp(int iOTPLength,string[] saAllowedCharacters )  
     {  
-  
-        string sOtp = String.Empty;  
-  
-        string sTempChars = String.Empty;  
-  
+        string sOtp = String.Empty;
         Random rand = new Random();  
-  
         for (int i = 0; i < iOTPLength; i++)  
-  
         {  
-  
             int p = rand.Next(0, saAllowedCharacters.Length);  
-  
-            sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];  
-  
+            var sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];  
             sOtp += sTempChars;  
-  
         }  
-  
         return sOtp;  
-  
     }  
-
 }

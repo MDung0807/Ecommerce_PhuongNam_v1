@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using BusBookTicket.Core.Common.Exceptions;
 using BusBookTicket.Core.Utils;
 using Ecommerce_PhuongNam_v1.Application.Common.Cloudinary;
 using Ecommerce_PhuongNam_v1.Application.Common.Constants;
 using Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
 using Ecommerce_PhuongNam_v1.Application.Common.Enums;
+using Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Application.Common.MailKet.DTO.Request;
 using Ecommerce_PhuongNam_v1.Application.Common.MailKet.Service;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Models;
@@ -29,7 +29,6 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
         private readonly IAccountService _accountService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<Customer, Guid> _repository;
-        private readonly IWardService _wardService;
         private readonly IOtpService _otpService;
         private readonly IMailService _mailService;
         private readonly CloudImageService _imageService;
@@ -42,7 +41,6 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
         public CustomerService(IMapper mapper,
             IAccountService accountService,
             IUnitOfWork unitOfWork,
-            IWardService wardService,
             IOtpService opOtpService,
             IMailService mailService,
             CloudImageService imageService,
@@ -53,7 +51,6 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             _accountService = accountService;
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.GenericRepository<Customer, Guid>();
-            _wardService = wardService;
             _otpService = opOtpService;
             _mailService = mailService;
             _imageService = imageService;
@@ -73,12 +70,12 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
         /// <returns></returns>
         public async Task<bool> Create(FormRegister entity)
         {
-            await _unitOfWork.BeginTransaction();
             try
             {
+                await _unitOfWork.BeginTransaction();
+                
                 CustomerSpecification specification = new CustomerSpecification(entity.Email, checkStatus:false, isDelete:true);
-                Customer customer = new Customer();
-                customer = await _repository.Get(specification);
+                var customer = await _repository.Get(specification);
                 if (customer != null)
                 {
                     await _repository.DeleteHard(customer);
@@ -87,34 +84,40 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                 customer = _mapper.Map<Customer>(entity);
 
                 // string linkImage = await _imageService.SaveImage(entity.Avatar);
-
-                // Set Full data in form regisger
-                customer.DateCreate = DateTime.Now;
-                customer.DateCreate = DateTime.Now;
             
                 // Get account
                 AuthRequest authRequest = _mapper.Map<AuthRequest>(entity);
                 await _accountService.Create(authRequest);
                 customer.Account = await _accountService.GetAccountByUsername(entity.Username, entity.RoleName, checkStatus:false);
+                
+                // Insert customer
                 customer.Status = (int)EnumsApp.Waiting;
                 customer.Avatar = null;
                 await _repository.Create(customer);
 
-                OtpResponse response = await _otpService.CreateOtp(new OtpRequest{Email = customer.Email});
+                OtpResponse response = await _otpService.CreateOtp(
+                    new OtpRequest
+                    {
+                        Email = customer.Email,
+                        PhoneNumber = customer.PhoneNumber
+                    });
                 
                 // Send mail with OTP code
-                MailRequest mailRequest = new MailRequest();
-                mailRequest.ToMail = customer.Email;
-                mailRequest.Content = "OTP code";
-                mailRequest.FullName = customer.FullName;
-                mailRequest.Subject = "Authentication OTP code";
-                mailRequest.Message = response.Code;
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToMail = customer.Email,
+                    Content = "OTP code",
+                    FullName = customer.FullName,
+                    Subject = "Authentication OTP code",
+                    Message = response.Code
+                };
                 await _mailService.SendEmailAsync(mailRequest);
                 await _unitOfWork.SaveChangesAsync();
                 return true;
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 await _unitOfWork.RollbackTransactionAsync();
                 return false;
             }
@@ -156,10 +159,9 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
 
         public async Task<CustomerPagingResult> GetAllByAdmin(CustomerPaging pagingRequest)
         {
-            List<Customer> customers = new List<Customer>();
             List<CustomerResponse> responses = new List<CustomerResponse>();
             CustomerSpecification specification = new CustomerSpecification(paging:pagingRequest);
-            customers = await _repository.ToList(specification);
+            var customers = await _repository.ToList(specification);
             int count = await _repository.Count(new CustomerSpecification());
             foreach(Customer customer in customers)
             {
@@ -169,10 +171,6 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             CustomerPagingResult result =
                 AppUtils.ResultPaging<CustomerPagingResult, CustomerResponse>(pagingRequest.PageIndex,
                     pagingRequest.PageSize, count, responses);
-            result.Items = responses;
-            result.PageIndex = pagingRequest.PageIndex;
-            result.PageSize = pagingRequest.PageSize;
-            result.PageTotal = (int)Math.Round((decimal)count / pagingRequest.PageSize);
             return result;
         }
 
@@ -239,7 +237,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             Customer customer = new Customer();
             
             customer = _mapper.Map<Customer>(entity);
-            customer.Id = _currentUserService.IdUser;
+            customer.Id = new Guid(_currentUserService.IdUser);
             customer.Status = (int)EnumsApp.Active;
             await _repository.Update(customer);
             return true;
