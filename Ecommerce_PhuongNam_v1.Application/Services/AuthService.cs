@@ -1,12 +1,22 @@
-﻿using CloudinaryDotNet;
-using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
+﻿using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Responses;
 using Ecommerce_PhuongNam_v1.Application.Interfaces;
+using Ecommerce_PhuongNam_v1.Domain.Entities;
+using Ecommerce_PhuongNam.Common.Repositories.Interfaces;
+using Account = CloudinaryDotNet.Account;
 
 namespace Ecommerce_PhuongNam_v1.Application.Services;
 
 public class AuthService : IAuthService
 {
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IGenericRepository<Auth, Guid> _repository;
+
+    public AuthService(IUnitOfWork unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+        _repository = _unitOfWork.GenericRepository<Auth, Guid>();
+    }
     public Task<object> GetById(Guid id)
     {
         throw new NotImplementedException();
@@ -27,9 +37,10 @@ public class AuthService : IAuthService
         throw new NotImplementedException();
     }
 
-    public Task<bool> Create(object entity)
+    public async Task<bool> Create(object entity)
     {
-        throw new NotImplementedException();
+        await _repository.CreateOrUpdate((Auth)entity);
+        return true;
     }
 
     public Task<bool> ChangeIsActive(Guid id)

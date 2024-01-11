@@ -15,6 +15,7 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
+using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
@@ -93,6 +94,7 @@ public class MappingProfile : Profile
         #region -- Configs Auth Module --
         CreateMap<FormRegister, AuthRequest>();
         CreateMap<AuthRequest, Account>();
+        CreateMap<AuthRequest, Login>();
         CreateMap<Account, AccResponse>();
 
         CreateMap<Account, AuthResponse>();

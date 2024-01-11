@@ -8,7 +8,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 public class Login :AuthRequest, IRequest<AuthResponse>
 {
     
-}
+}   
 
 public class LoginRequest : IRequestHandler<Login, AuthResponse>
 {

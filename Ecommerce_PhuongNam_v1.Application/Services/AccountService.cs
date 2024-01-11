@@ -165,8 +165,8 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                 response.Id = account.Shop.Id;
             else
                 response.Id = account.Customer.Id;
-            if (!await SaveRefreshToken(account))
-                throw new AuthException(AuthConstants.REFRESH_TOKEN_FAIL);
+            if (!await SaveLogin(auth))
+                throw new AuthException(AuthConstants.REFRESH_TOKEN_FAIL) ;
             
             
             response.Token = JwtUtils.GenerateToken(response);
@@ -222,9 +222,8 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
 
             Account accountRequest = _mapper.Map<Account>(request);
             Account account = await GetAccountByUsername(request.Username) ?? throw new NotFoundException(AuthConstants.NOT_FOUND);
-
-            Auth auth = account.Auths.First(x => x.IdDeceive == request.IdDeceive);
-            auth.RefreshToken = JwtUtils.GenerateRefreshToken();
+            Auth auth = new Auth();
+            
             if (PassEncrypt.VerifyPassword(accountRequest.Password, account.Password))
             {
                 if (true)
@@ -237,11 +236,23 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                     {
                         response.Id = account.Shop.Id;
                     }
-
-                    if (!await SaveRefreshToken(account))
-                        throw new ExceptionDetail(AuthConstants.ERROR);
                     response.Token = JwtUtils.GenerateToken(response);
                     response.RefreshToken = auth.RefreshToken;
+                    
+                    auth.RefreshToken = JwtUtils.GenerateRefreshToken();
+                    if (account.Auths.Count != 0)
+                    {
+                        auth = account.Auths?.First(x => x.IdDeceive == request.IdDeceive);
+                    }
+                    else
+                    {
+                        auth.Account = account;
+                        auth.IdDeceive = request.IdDeceive;
+                        auth.Token = response.Token;
+                    }
+                    if (!await SaveLogin(auth))
+                        throw new ExceptionDetail(AuthConstants.ERROR);
+                    
                     return response;
                 }
             }
@@ -279,9 +290,9 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
 
         #region -- Private Method --
 
-        private async Task<bool> SaveRefreshToken(Account account)
+        private async Task<bool> SaveLogin(Auth auth)
         {
-            await _authService.Update(account);
+            await _authService.Create(auth);
             return true;
         }
 
