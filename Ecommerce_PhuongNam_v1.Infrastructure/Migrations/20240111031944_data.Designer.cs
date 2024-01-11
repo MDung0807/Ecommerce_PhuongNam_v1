@@ -4,6 +4,7 @@ using Ecommerce_PhuongNam_v1.Infrastructure.Data.Configs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240111031944_data")]
+    partial class data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +31,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -44,8 +47,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -70,8 +73,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
@@ -91,8 +94,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<long?>("WardId")
                         .HasColumnType("bigint");
@@ -122,8 +125,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("CodeNameEnglish")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CreateBy")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -140,8 +143,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("UpdateBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -162,8 +165,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("CodeNameEnglish")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CreateBy")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -186,8 +189,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("UpdateBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -203,8 +206,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<Guid?>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -234,8 +237,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -252,8 +255,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -274,8 +277,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -290,8 +293,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
@@ -305,8 +308,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -326,8 +329,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<Guid>("CartId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -341,8 +344,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("VariantId")
                         .HasColumnType("uniqueidentifier");
@@ -362,8 +365,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -384,8 +387,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -409,8 +412,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -439,8 +442,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -467,8 +470,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("CodeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CreateBy")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -494,8 +497,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("UpdateBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -512,8 +515,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
@@ -530,8 +533,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("VariantId")
                         .HasColumnType("uniqueidentifier");
@@ -551,8 +554,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -578,8 +581,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -600,8 +603,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -624,8 +627,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("UnitPrice")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("VariantId")
                         .HasColumnType("uniqueidentifier");
@@ -648,8 +651,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -668,8 +671,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -689,8 +692,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -704,8 +707,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -727,8 +730,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -754,8 +757,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -776,8 +779,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -797,8 +800,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -824,8 +827,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("CodeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CreateBy")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -848,8 +851,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("UpdateBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -866,8 +869,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -884,8 +887,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -901,8 +904,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
@@ -931,8 +934,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -952,8 +955,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
@@ -985,8 +988,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1005,8 +1008,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1023,8 +1026,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1040,8 +1043,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<Guid?>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1055,8 +1058,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1073,8 +1076,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1106,8 +1109,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<long>("TotalSold")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1123,8 +1126,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<decimal>("Cost")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1150,8 +1153,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1167,8 +1170,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<Guid?>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1191,8 +1194,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1209,8 +1212,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1224,8 +1227,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -1246,8 +1249,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
@@ -1264,8 +1267,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1282,8 +1285,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1312,8 +1315,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -1336,8 +1339,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<string>("CodeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CreateBy")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -1363,8 +1366,8 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("UpdateBy")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
