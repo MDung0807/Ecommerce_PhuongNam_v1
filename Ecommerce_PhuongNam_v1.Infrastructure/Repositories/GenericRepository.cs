@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq.Expressions;
-using BusBookTicket.Core.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Application.Common.Constants;
+using Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Application.Interfaces;
 using Ecommerce_PhuongNam_v1.Application.Specifications;
 using Ecommerce_PhuongNam_v1.Application.Specifications.Interfaces;
@@ -142,11 +142,11 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
         }
     }
 
-    public async Task<bool> ChangeStatus(object entity, int status, List<Dictionary<string, int>> listObjectNotChange = null)
+    public async Task<bool> ChangeStatus(object entity, int status, List<Dictionary<string, TId>> listObjectNotChange = null)
     {
         try
         {
-            listObjectNotChange ??= new List<Dictionary<string, int>>();
+            listObjectNotChange ??= new List<Dictionary<string, TId>>();
             await ChangeStatusImpl(entity, status, listObjectNotChange);
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -171,7 +171,7 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
     {
         try
         {
-            _dbSet.Entry(entity).State = entity.Id != null ? EntityState.Modified : EntityState.Added;
+            _dbSet.Entry(entity).State = entity.Id.Equals(default) ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity;
         }
@@ -225,14 +225,19 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
         
     }
 
-    private async Task<bool> ChangeStatusImpl(object entity, int status, List<Dictionary<string, int>> checkedObject)
+    private async Task<bool> ChangeStatusImpl(object entity, int status, List<Dictionary<string, TId>> checkedObject)
     {
-        Dictionary<string, int> objectState = new Dictionary<string, int>
+        Dictionary<string, TId> objectState = new Dictionary<string, TId>
         {
-            { entity.GetType().Name, (int)entity.GetType().GetProperty("Id").GetValue(entity) }
+            { entity.GetType().Name, (TId)entity.GetType().GetProperty("Id").GetValue(entity) }
         };
 
-        if (!checkedObject.Any(x => x.Keys.SequenceEqual(objectState.Keys) && (x.Values.SequenceEqual(new[] { 0 }) || x.Values.SequenceEqual(objectState.Values))))
+        if (!checkedObject.Any(
+                x => x.Keys.SequenceEqual(objectState.Keys) 
+                     && (x.Values.SequenceEqual(new TId[] {  }) 
+                         || x.Values.SequenceEqual(objectState.Values))
+                     )
+            )
         {
             checkedObject.Add(objectState);
         }
@@ -261,8 +266,10 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
                     bool isContants = false;
                     foreach (var item in checkedObject)
                     {
-                        if ((item.Values.Contains(0) ||
-                             item.Values.Contains((int)property.GetValue(entity).GetType().GetProperty("Id").GetValue(entity))) && item.Keys.Contains(property.Name))
+                        if ((item.Values.Contains(default) ||
+                                item.Values.Contains((TId)property.GetValue(entity).GetType().GetProperty("Id").GetValue(entity.GetType().GetProperty(property.Name).GetValue(entity)))
+                             )
+                             && item.Keys.Contains(property.Name))
                         {
                             isContants = true;
                             break;
@@ -272,9 +279,12 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
                     if (!isContants)
                     {
                         checkedObject.Add(
-                        new Dictionary<string, int>
+                        new Dictionary<string, TId>
                         {
-                            { property.Name, (int)property.GetValue(entity).GetType().GetProperty("Id").GetValue(entity) }
+                            {
+                                property.Name, 
+                                (TId)property.GetValue(entity).GetType().GetProperty("Id").GetValue(entity.GetType().GetProperty(property.Name).GetValue(entity))
+                            }
                         }); 
                         await ChangeStatusImpl(property.GetValue(entity), status, checkedObject);
                     }
