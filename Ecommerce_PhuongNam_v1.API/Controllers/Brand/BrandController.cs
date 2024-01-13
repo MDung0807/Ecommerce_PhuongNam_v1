@@ -84,5 +84,14 @@ public class BrandController : ControllerBase
         var response = await _sender.Send(_mapper.Map<GetListBrand>(paging));
         return Ok(new Response<BrandPagingResult>(false, response));
     }
+    
+    
+    [HttpGet("getByName")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetByName([FromHeader]FilterBrandRequest request)
+    {
+        var response = await _sender.Send(_mapper.Map<FilterBrand>(request));
+        return Ok(new Response<BrandPagingResult>(false, response));
+    }
     #endregion -- Controller --
 }

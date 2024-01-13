@@ -132,4 +132,22 @@ public class BrandService : IBrandService
         await _repository.Update(brand);
         return true;
     }
+
+    public async Task<BrandPagingResult> GetFilterBrand(FilterBrandRequest request)
+    {
+        BrandSpecification specification = 
+            new BrandSpecification(name: request.Name, 
+                paging: new BrandPaging{PageIndex = request.PageIndex, PageSize = request.PageSize});
+        
+        List<Brand> brands = await _repository.ToList(specification: specification);
+        
+        int count = await _repository.Count(new BrandSpecification(name: request.Name));
+        var result = AppUtils.ResultPaging<BrandPagingResult, BrandResponse>(
+            index: request.PageIndex,
+            size: request.PageSize,
+            count: count,
+            items: await AppUtils.MapObject<Brand, BrandResponse>(brands, _mapper)
+        );
+        return result;
+    }
 }
