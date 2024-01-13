@@ -19,6 +19,7 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Brand.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
@@ -116,7 +117,7 @@ public class MappingProfile : Profile
         CreateMap<FormUpdateBrand, UpdateBrand>();
         CreateMap<FormUpdateLogoBrand, UpdateLogoBrand>();
         CreateMap<Brand, BrandResponse>();
-
+        CreateMap<FilterBrandRequest, FilterBrand>();
         CreateMap<FormCreateBrand, Brand>();
         CreateMap<FormUpdateBrand, Brand>();
 
