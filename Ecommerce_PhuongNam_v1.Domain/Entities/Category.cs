@@ -7,7 +7,8 @@ public class Category : BaseEntity<Guid>
 {
     public string Name { get; set; }
     public string Image { get; set; }
-    public long ParentId { get; set; }
     public List<Product> Products { get; set; }
+    
+    public Category Parent { get; set; }
 
 }

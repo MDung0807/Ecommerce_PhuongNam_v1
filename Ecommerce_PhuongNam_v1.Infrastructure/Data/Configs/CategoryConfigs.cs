@@ -10,5 +10,9 @@ public class CategoryConfigs : BaseEntityConfig<Guid>, IEntityTypeConfiguration<
     public void Configure(EntityTypeBuilder<Category> builder)
     {
         builder.HasAlternateKey(x => x.Name);
+        builder.HasOne(x => x.Parent)
+            .WithMany()
+            .HasForeignKey("ParentId")
+            .IsRequired(false);
     }
 }

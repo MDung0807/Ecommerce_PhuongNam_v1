@@ -4,6 +4,7 @@ using Ecommerce_PhuongNam_v1.Infrastructure.Data.Configs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240113091533_parentId")]
+    partial class parentId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -378,9 +381,6 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid?>("ParentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -390,8 +390,6 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Name");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories");
                 });
@@ -1438,16 +1436,6 @@ namespace Ecommerce_PhuongNam_v1.Infrastructure.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Variant");
-                });
-
-            modelBuilder.Entity("Ecommerce_PhuongNam_v1.Domain.Entities.Category", b =>
-                {
-                    b.HasOne("Ecommerce_PhuongNam_v1.Domain.Entities.Category", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("Ecommerce_PhuongNam_v1.Domain.Entities.Customer", b =>

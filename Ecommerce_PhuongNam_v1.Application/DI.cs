@@ -41,6 +41,7 @@ public static class DI
             .AddScoped<IOtpService, OtpService>()
             .AddScoped<IMailService, MailService>()
             .AddScoped<IBrandService, BrandService>()
+            .AddScoped<ICategoryService, CategoryService>()
             .AddSingleton<CloudImageService>()
             ;
         #endregion -- Scoped --

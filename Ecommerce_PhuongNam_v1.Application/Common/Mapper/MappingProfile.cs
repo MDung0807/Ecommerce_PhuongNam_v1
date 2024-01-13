@@ -15,12 +15,18 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Category.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
+using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
+using Ecommerce_PhuongNam_v1.Application.Paging.Category;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
 namespace Ecommerce_PhuongNam_v1.Application.Common.Mapper;
@@ -117,9 +123,24 @@ public class MappingProfile : Profile
         CreateMap<FormUpdateBrand, UpdateBrand>();
         CreateMap<FormUpdateLogoBrand, UpdateLogoBrand>();
         CreateMap<Brand, BrandResponse>();
+        CreateMap<BrandPaging, GetListBrand>();
         CreateMap<FilterBrandRequest, FilterBrand>();
         CreateMap<FormCreateBrand, Brand>();
         CreateMap<FormUpdateBrand, Brand>();
+
+        #endregion
+
+        #region -- Category --
+
+        CreateMap<FormCreateCategory, CreateCategory>();
+        CreateMap<FormUpdateCategory, UpdateCategory>();
+        CreateMap<FormUpdateLogoCategory, UpdateLogoCategory>();
+        CreateMap<CategoryPaging, GetListCategory>();
+        CreateMap<FilterCategoryRequest, FilterCategory>();
+        
+        CreateMap<FormCreateCategory, Category>();
+        CreateMap<FormUpdateCategory, Category>();
+        CreateMap<Category, CategoryResponse>();
 
         #endregion
 
