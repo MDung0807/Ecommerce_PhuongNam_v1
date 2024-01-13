@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 
 namespace Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
@@ -12,5 +13,5 @@ public class CurrentUserService : ICurrentUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string IdUser => _httpContextAccessor.HttpContext.ToString();
+    public string IdUser => _httpContextAccessor.HttpContext!.User.Claims.ToList().First(c => c.Type == "UserID").Value;
 }

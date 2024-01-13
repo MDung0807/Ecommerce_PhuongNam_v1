@@ -1,5 +1,6 @@
 
 
+using Ecommerce_PhuongNam_v1.API.Middlewares;
 using Ecommerce_PhuongNam_v1.Application;
 using Ecommerce_PhuongNam_v1.Application.Common.Exceptions;
 using Ecommerce_PhuongNam_v1.Infrastructure;
@@ -8,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructureLayer(builder.Configuration);
 builder.Services.AddApplicationLayer(builder.Configuration);
 var services = builder.Services;
-
+#region -- Authen --
+JwtMiddleware.ConfigureService(services);
+#endregion -- Authen --
 
 var app = builder.Build();
 

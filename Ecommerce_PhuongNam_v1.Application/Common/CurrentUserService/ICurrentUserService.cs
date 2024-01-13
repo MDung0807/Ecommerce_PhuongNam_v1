@@ -1,6 +1,8 @@
-﻿namespace Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
+﻿using Ecommerce_PhuongNam_v1.Domain.Entities;
 
-public interface ICurrentUserService 
+namespace Ecommerce_PhuongNam_v1.Application.Common.CurrentUserService;
+
+public interface ICurrentUserService
 {
     string IdUser { get; }
 }

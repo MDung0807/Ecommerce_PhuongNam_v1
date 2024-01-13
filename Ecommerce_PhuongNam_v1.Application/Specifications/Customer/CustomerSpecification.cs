@@ -29,7 +29,7 @@ public sealed class CustomerSpecification : BaseSpecification<Domain.Entities.Cu
         }
         AddInclude(x => x.Account);
         AddInclude(x => x.Account.RoleAccounts);
-        AddInclude("RoleAccounts.Role");
+        AddInclude("Account.RoleAccounts.Role");
         AddInclude(x => x.Rank);
         AddInclude(x => x.AddressDetails);
         AddInclude("AddressDetails.Ward");

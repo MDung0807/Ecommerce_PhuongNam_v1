@@ -237,9 +237,10 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                         response.Id = account.Shop.Id;
                     }
                     response.Token = JwtUtils.GenerateToken(response);
-                    response.RefreshToken = auth.RefreshToken;
                     
                     auth.RefreshToken = JwtUtils.GenerateRefreshToken();
+                    response.RefreshToken = auth.RefreshToken;
+
                     if (account.Auths.Count != 0)
                     {
                         auth = account.Auths?.First(x => x.IdDeceive == request.IdDeceive);
