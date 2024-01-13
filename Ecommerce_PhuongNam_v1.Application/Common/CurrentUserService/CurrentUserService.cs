@@ -13,5 +13,16 @@ public class CurrentUserService : ICurrentUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string IdUser => _httpContextAccessor.HttpContext!.User.Claims.ToList().First(c => c.Type == "UserID").Value;
+    public string IdUser
+    {
+        get
+        {
+            if (_httpContextAccessor.HttpContext != null && _httpContextAccessor.HttpContext.User.Claims.ToList().Count > 0)
+            {
+                return _httpContextAccessor.HttpContext.User.Claims.ToList().First(c => c.Type == "UserID").Value;
+            }
+
+            return "system";
+        }
+    }
 }

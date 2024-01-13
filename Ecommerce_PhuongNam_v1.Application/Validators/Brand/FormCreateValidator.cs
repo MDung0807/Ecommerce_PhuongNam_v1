@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Ecommerce_PhuongNam_v1.Application.Validators.Brand;
 
-public class FormCreateValidator : AbstractValidator<FormCreate>
+public class FormCreateValidator : AbstractValidator<FormCreateBrand>
 {
     public FormCreateValidator()
     {

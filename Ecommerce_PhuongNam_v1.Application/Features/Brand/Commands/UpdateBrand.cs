@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 
-public class UpdateBrand : FormUpdate, IRequest<bool>
+public class UpdateBrand : FormUpdateBrand, IRequest<bool>
 {
     
 }

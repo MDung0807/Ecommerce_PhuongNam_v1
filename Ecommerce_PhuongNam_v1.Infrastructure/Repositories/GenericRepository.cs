@@ -171,7 +171,7 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
     {
         try
         {
-            _dbSet.Entry(entity).State = entity.Id.Equals(default) ? EntityState.Added : EntityState.Modified;
+            _dbSet.Entry(entity).State = entity.Id.Equals(new Guid()) ? EntityState.Added : EntityState.Modified;
             await _context.SaveChangesAsync();
             return entity;
         }

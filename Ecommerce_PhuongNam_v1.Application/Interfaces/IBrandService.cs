@@ -5,7 +5,7 @@ using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
 
 namespace Ecommerce_PhuongNam_v1.Application.Interfaces;
 
-public interface IBrandService : IService<FormCreate, FormUpdate, Guid, BrandResponse,BrandPaging, BrandPagingResult>
+public interface IBrandService : IService<FormCreateBrand, FormUpdateBrand, Guid, BrandResponse,BrandPaging, BrandPagingResult>
 {
-    Task<bool> UpdateLogo(UpdateLogo request);
+    Task<bool> UpdateLogo(FormUpdateLogoBrand request);
 }

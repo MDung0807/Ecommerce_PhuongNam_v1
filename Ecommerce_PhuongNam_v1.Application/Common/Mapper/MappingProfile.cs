@@ -13,9 +13,12 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Unit;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses.Ward;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
@@ -105,6 +108,18 @@ public class MappingProfile : Profile
 
         CreateMap<OtpRequest, AuthOTP>();
         CreateMap<OtpCode, OtpResponse>();
+        #endregion
+
+        #region -- Brand --
+
+        CreateMap<FormCreateBrand, CreateBrand>();
+        CreateMap<FormUpdateBrand, UpdateBrand>();
+        CreateMap<FormUpdateLogoBrand, UpdateLogoBrand>();
+        CreateMap<Brand, BrandResponse>();
+
+        CreateMap<FormCreateBrand, Brand>();
+        CreateMap<FormUpdateBrand, Brand>();
+
         #endregion
 
     }

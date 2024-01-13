@@ -61,8 +61,8 @@ public class AppDbContext : DbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreateBy = _currentUserService.IdUser;
-                    entry.Entity.UpdateBy = _currentUserService.IdUser;
+                    entry.Entity.CreateBy = _currentUserService.IdUser ?? "system";
+                    entry.Entity.UpdateBy = _currentUserService.IdUser ?? "system";
                     entry.Entity.DateCreate = DateTime.Now;
                     entry.Entity.DateUpdate = DateTime.Now;
                     break;

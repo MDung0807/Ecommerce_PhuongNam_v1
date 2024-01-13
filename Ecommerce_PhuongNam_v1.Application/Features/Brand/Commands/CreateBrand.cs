@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 
-public class CreateBrand : FormCreate, IRequest<bool>
+public class CreateBrand : FormCreateBrand, IRequest<bool>
 {
     
 }

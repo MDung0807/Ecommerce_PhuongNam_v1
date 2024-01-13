@@ -2,7 +2,7 @@
 
 namespace Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Requests;
 
-public class UpdateLogo
+public class FormUpdateLogoBrand
 {
     public Guid Id { get; set; }
     public IFormFile Image { get; set; }

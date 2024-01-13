@@ -40,6 +40,7 @@ public static class DI
             .AddScoped<IRoleAccountService, RoleAccountService>()
             .AddScoped<IOtpService, OtpService>()
             .AddScoped<IMailService, MailService>()
+            .AddScoped<IBrandService, BrandService>()
             .AddSingleton<CloudImageService>()
             ;
         #endregion -- Scoped --
