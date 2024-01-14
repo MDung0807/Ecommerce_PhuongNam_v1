@@ -19,14 +19,19 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Queries;
 using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
 using Ecommerce_PhuongNam_v1.Application.Paging.Category;
+using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
 namespace Ecommerce_PhuongNam_v1.Application.Common.Mapper;
@@ -144,5 +149,17 @@ public class MappingProfile : Profile
 
         #endregion
 
+        #region -- PaymentMethod --
+
+        CreateMap<FormCreatePayment, CreatePayment>();
+        CreateMap<FormCreatePayment, PaymentMethod>();
+        CreateMap<FormUpdatePayment, UpdatePayment>();
+        CreateMap<FormUpdatePayment, PaymentMethod>();
+
+        CreateMap<PaymentMethod, PaymentResponse>();
+        CreateMap<PaymentMethodPaging, GetListPayment>();
+        CreateMap<GetFilterPaymentRequest, GetFilterPayment >();
+
+        #endregion
     }
 }
