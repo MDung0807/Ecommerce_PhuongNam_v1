@@ -21,6 +21,8 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Shop.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Shop.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Queries;
@@ -29,9 +31,12 @@ using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Shop.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Shop.Queries;
 using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
 using Ecommerce_PhuongNam_v1.Application.Paging.Category;
 using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
+using Ecommerce_PhuongNam_v1.Application.Paging.Shop;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
 namespace Ecommerce_PhuongNam_v1.Application.Common.Mapper;
@@ -161,5 +166,21 @@ public class MappingProfile : Profile
         CreateMap<GetFilterPaymentRequest, GetFilterPayment >();
 
         #endregion
+
+        #region -- Shop --
+
+        CreateMap<FormCreateShop, Shop>();
+        CreateMap<FormUpdateShop, Shop>();
+        CreateMap<Shop, ShopResponse>();
+
+        CreateMap<FormCreateShop, CreateShop>();
+        CreateMap<FormUpdateShop, UpdateShop>();
+        CreateMap<FormUpdateLogoShop, UpdateLogoShop>();
+        CreateMap<FilterShopRequest, FilterShop>();
+        CreateMap<ShopPaging, GetListShop>();
+
+        #endregion
+
+
     }
 }

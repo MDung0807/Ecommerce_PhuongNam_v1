@@ -6,9 +6,10 @@ namespace Ecommerce_PhuongNam_v1.Domain.Entities;
 public class Shop : BaseEntity<Guid>
 {
     public string Name { get; set; }
-    public string Location { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
+    public bool IsMall { get; set; }
+    public string Logo { get; set; }
 
     public Account Account { get; set; }
     public HashSet<Product> Products { get; set; }
