@@ -10,6 +10,7 @@ public class Variant : BaseEntity<Guid>
     public decimal OriginPrice { get; set; }
     public decimal SalePrice { get; set; }
     public decimal FinalPrice { get; set; }
+    public long Quantity { get; set; }
 
     #region --Relationship --
     public Product Product { get; set; }

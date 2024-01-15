@@ -9,5 +9,6 @@ public class VariantResponse
     public decimal OriginPrice { get; set; }
     public decimal SalePrice { get; set; }
     public decimal FinalPrice { get; set; }
+    public long Quantity { get; set; }
     public List<FormSpecification> Specifications { get; set; }
 }
