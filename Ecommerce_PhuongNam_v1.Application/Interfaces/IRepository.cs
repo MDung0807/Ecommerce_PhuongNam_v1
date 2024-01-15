@@ -31,6 +31,8 @@ namespace Ecommerce_PhuongNam_v1.Application.Interfaces
         /// <returns>ID for entity in database</returns>
         Task<T> Create(T entity);
 
+        Task<bool> CreateRange(List<T> entities);
+
         /// <summary>
         /// Change status in entity and reference entity
         /// </summary>

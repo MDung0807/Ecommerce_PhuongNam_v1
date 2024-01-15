@@ -142,6 +142,21 @@ public class GenericRepository<T, TId> : IGenericRepository<T, TId> where T : Ba
         }
     }
 
+    public async Task<bool> CreateRange(List<T> entities)
+    {
+        try
+        {
+            await _dbSet.AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw new ExceptionDetail(AppConstants.ERROR);
+        }
+        return true;
+    }
+
     public async Task<bool> ChangeStatus(object entity, int status, List<Dictionary<string, TId>> listObjectNotChange = null)
     {
         try
