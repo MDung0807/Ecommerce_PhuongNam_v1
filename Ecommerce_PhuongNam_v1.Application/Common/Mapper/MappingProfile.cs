@@ -21,8 +21,12 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Product.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Product.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Shop.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Shop.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Variant.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Variant.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Queries;
@@ -31,11 +35,14 @@ using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Product.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Product.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Shop.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Shop.Queries;
 using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
 using Ecommerce_PhuongNam_v1.Application.Paging.Category;
 using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
+using Ecommerce_PhuongNam_v1.Application.Paging.Product;
 using Ecommerce_PhuongNam_v1.Application.Paging.Shop;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
@@ -181,6 +188,36 @@ public class MappingProfile : Profile
 
         #endregion
 
+        #region -- Product --
 
+        CreateMap<FormCreateProduct, Product>()
+            .ForPath(dest => dest.Category.Id, 
+                opts => opts.MapFrom(x => x.CategoryId))
+            .ForPath(dest => dest.Brand.Id, 
+                opts => opts.MapFrom(x => x.BrandId));
+        CreateMap<FormUpdateProduct, Product>();
+        CreateMap<FilterProductRequest, FilterProduct>();
+        CreateMap<FormCreateProduct, CreateProduct>();
+        CreateMap<FormUpdateProduct, UpdateProduct>();
+        CreateMap<ProductPaging, GetAllProduct>();
+
+        CreateMap<Product, ProductResponse>();
+        CreateMap<Product, ProductDetail>();
+        CreateMap<ProductImage, ProductImageResponse>();
+
+        #endregion
+
+        #region -- Variant --
+
+        // CreateMap<FormCreateProduct, FormCreateVariant>()
+        //     .ForPath(dest => dest,
+        //         opts => opts.MapFrom(x => x.Variants));
+        CreateMap<FormCreateVariant, Variant>();
+        CreateMap<FormUpdateVariant, Variant>();
+        CreateMap<FormSpecification, Specification>();
+        CreateMap<Specification, FormSpecification>();
+        CreateMap<Variant, VariantResponse>();
+
+        #endregion
     }
 }

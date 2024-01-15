@@ -44,6 +44,8 @@ public static class DI
             .AddScoped<ICategoryService, CategoryService>()
             .AddScoped<IPaymentMethodService, PaymentMethodService>()
             .AddScoped<IShopService, ShopService>()
+            .AddScoped<IProductService, ProductService>()
+            .AddScoped<IVariantService, VariantService>()
             .AddSingleton<CloudImageService>()
             ;
         #endregion -- Scoped --
