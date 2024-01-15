@@ -9,13 +9,11 @@ using Ecommerce_PhuongNam_v1.Application.Common.MailKet.DTO.Request;
 using Ecommerce_PhuongNam_v1.Application.Common.MailKet.Service;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Models;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Services;
-using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.Interfaces;
 using Ecommerce_PhuongNam_v1.Application.Paging.Customer;
-using Ecommerce_PhuongNam_v1.Application.Specifications.Address;
 using Ecommerce_PhuongNam_v1.Application.Specifications.Customer;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 using Ecommerce_PhuongNam.Common.Repositories.Interfaces;
@@ -29,6 +27,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
         private readonly IAccountService _accountService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<Customer, Guid> _repository;
+        private readonly IGenericRepository<Cart, Guid> _cartRepository;
         private readonly IOtpService _otpService;
         private readonly IMailService _mailService;
         private readonly CloudImageService _imageService;
@@ -112,6 +111,13 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                     Message = response.Code
                 };
                 await _mailService.SendEmailAsync(mailRequest);
+                
+                // Create cart
+                Cart cart = new Cart
+                {
+                    Customer = customer
+                };
+                await _cartRepository.Create(cart);
                 await _unitOfWork.SaveChangesAsync();
                 return true;
             }

@@ -15,6 +15,8 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Brand.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Cart.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Cart.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
@@ -30,6 +32,8 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Variant.Responses;
 using Ecommerce_PhuongNam_v1.Application.Features.Auth.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Brand.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Cart.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Cart.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
@@ -40,6 +44,7 @@ using Ecommerce_PhuongNam_v1.Application.Features.Product.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Shop.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Shop.Queries;
 using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
+using Ecommerce_PhuongNam_v1.Application.Paging.Cart;
 using Ecommerce_PhuongNam_v1.Application.Paging.Category;
 using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
 using Ecommerce_PhuongNam_v1.Application.Paging.Product;
@@ -217,6 +222,27 @@ public class MappingProfile : Profile
         CreateMap<FormSpecification, Specification>();
         CreateMap<Specification, FormSpecification>();
         CreateMap<Variant, VariantResponse>();
+
+        #endregion
+
+        #region -- Cart --
+
+        CreateMap<FormAddCart, CartItem>()
+            .ForPath(dest => dest.Cart.Customer.Id,
+                opts => opts.MapFrom(x => x.CustomerId))
+            .ForPath(dest => dest.Variant.Id, 
+                opts => opts.MapFrom(x => x.VariantId));
+        CreateMap<FormUpdateCart, CartItem>()
+            .ForPath(dest => dest.Cart.Customer.Id,
+                opts => opts.MapFrom(x => x.CustomerId))
+            .ForPath(dest => dest.Variant.Id, 
+                opts => opts.MapFrom(x => x.VariantId));;
+        
+        CreateMap<CartItem, CartIItemResponse>();
+
+        CreateMap<FormAddCart, AddToCart>();
+        CreateMap<FormUpdateCart, UpdateCart>();
+        CreateMap<CartPaging, GetCart>();
 
         #endregion
     }
