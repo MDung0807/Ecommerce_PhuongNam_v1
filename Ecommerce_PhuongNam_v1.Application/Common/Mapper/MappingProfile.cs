@@ -21,6 +21,8 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Category.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Follow.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Follow.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Product.Requests;
@@ -37,6 +39,8 @@ using Ecommerce_PhuongNam_v1.Application.Features.Cart.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Follow.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Follow.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Product.Commands;
@@ -46,6 +50,7 @@ using Ecommerce_PhuongNam_v1.Application.Features.Shop.Queries;
 using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
 using Ecommerce_PhuongNam_v1.Application.Paging.Cart;
 using Ecommerce_PhuongNam_v1.Application.Paging.Category;
+using Ecommerce_PhuongNam_v1.Application.Paging.Follow;
 using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
 using Ecommerce_PhuongNam_v1.Application.Paging.Product;
 using Ecommerce_PhuongNam_v1.Application.Paging.Shop;
@@ -243,6 +248,22 @@ public class MappingProfile : Profile
         CreateMap<FormAddCart, AddToCart>();
         CreateMap<FormUpdateCart, UpdateCart>();
         CreateMap<CartPaging, GetCart>();
+
+        #endregion
+
+        #region UserFollow Shop
+
+        CreateMap<FollowRequest, UserFollowShop>()
+            .ForPath(dest => dest.Customer.Id, 
+                opts => opts.MapFrom(x => x.CustomerId))
+            .ForPath(dest => dest.Shop.Id, 
+                opts => opts.MapFrom(x => x.ShopId));
+
+        CreateMap<UserFollowShop, FollowResponse>();
+
+        CreateMap<FollowPaging, GetFollow>();
+        CreateMap<FollowRequest, AddFollow>();
+        CreateMap<FollowRequest, RemoveFollow>();
 
         #endregion
     }
