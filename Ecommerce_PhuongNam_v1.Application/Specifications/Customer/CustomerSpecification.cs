@@ -51,4 +51,5 @@ public sealed class CustomerSpecification : BaseSpecification<Domain.Entities.Cu
         // AddInclude("RoleAccounts.Role");
         AddInclude(x => x.Rank);
     }
+    
 }

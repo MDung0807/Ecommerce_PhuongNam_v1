@@ -9,6 +9,7 @@ using Ecommerce_PhuongNam_v1.Application.Common.MailKet.DTO.Request;
 using Ecommerce_PhuongNam_v1.Application.Common.MailKet.Service;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Models;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Services;
+using Ecommerce_PhuongNam_v1.Application.Common.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Auth.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
@@ -31,7 +32,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
         private readonly IOtpService _otpService;
         private readonly IMailService _mailService;
         private readonly CloudImageService _imageService;
-        private readonly IAddressDetail _addressDetailService;
+        private readonly IAddressDetailService _addressDetailService;
         private readonly ICurrentUserService _currentUserService;
 
         #endregion --  Properties --
@@ -43,7 +44,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             IOtpService opOtpService,
             IMailService mailService,
             CloudImageService imageService,
-            IAddressDetail addressDetail,
+            IAddressDetailService addressDetail,
             ICurrentUserService currentUserService)
         {
             _mapper = mapper;
@@ -216,6 +217,25 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
                 throw new ExceptionDetail(AppConstants.OTP_NOT_AUTH);
             }
             return await ChangeIsActive(customer.Id);
+        }
+
+        public async Task<bool> AddLocation(LocationRequest request)
+        {
+            AddressDetail addressDetail = _mapper.Map<AddressDetail>(request);
+            await _addressDetailService.Create(addressDetail);
+            return true;
+        }
+
+        public async Task<List<CusLocationResponse>> GetAllLocation(Guid customerId)
+        {
+            var data =  (List<LocationResponse>)await _addressDetailService.GetAll(null, customerId);
+            
+            return await AppUtils.MapObject<LocationResponse, CusLocationResponse>(data, _mapper);
+        }
+
+        public async Task<bool> RemoveAddress(Guid addressDetailId)
+        {
+            return await _addressDetailService.Delete(addressDetailId);
         }
 
         public async Task<bool> Delete(Guid id)

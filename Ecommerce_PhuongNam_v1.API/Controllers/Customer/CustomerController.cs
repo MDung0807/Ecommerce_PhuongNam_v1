@@ -107,5 +107,29 @@ public class CustomerController : ControllerBase
         bool status = await _sender.Send(new ChangeIsLock());
         return Ok(new Response<string>(!status, "responses"));
     }
+
+    [HttpPost("addLocation")]
+    [Authorize(Roles = AppConstants.CUSTOMER)]
+    public async Task<IActionResult> AddLocation([FromBody] LocationRequest request)
+    {
+        var status = await _sender.Send(_mapper.Map<AddLocation>(request));
+        return Ok(new Response<string>(!status, ""));
+    }
+    
+    [HttpDelete("deleteLocation")]
+    [Authorize(Roles = AppConstants.CUSTOMER)]
+    public async Task<IActionResult> DeleteLocation([FromQuery] Guid locationId)
+    {
+        var status = await _sender.Send(new RemoveLocation{Id = locationId});
+        return Ok(new Response<string>(!status, ""));
+    }
+    
+    [HttpGet("getLocation")]
+    [Authorize(Roles = AppConstants.CUSTOMER)]
+    public async Task<IActionResult> GetLocation()
+    {
+        var response = await _sender.Send(new Application.Features.Customer.Queries.GetLocation());
+        return Ok(new Response<object>(false, response));
+    }
     #endregion -- Controllers --
 }

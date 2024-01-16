@@ -9,5 +9,8 @@ namespace Ecommerce_PhuongNam_v1.Application.Interfaces
     {
         Task<CustomerPagingResult> GetAllCustomer(CustomerPaging paging);
         Task<bool> AuthOtp(OtpRequest request);
+        Task<bool> AddLocation(LocationRequest request);
+        Task<List<CusLocationResponse>> GetAllLocation(Guid customerId);
+        Task<bool> RemoveAddress(Guid addressDetailId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ecommerce_PhuongNam_v1.Application.Common.OTP.Models;
+using Ecommerce_PhuongNam_v1.Application.Common.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Requests.District;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Requests.Province;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Address.Requests.Region;
@@ -92,20 +93,23 @@ public class MappingProfile : Profile
             .ForPath(dest => dest.ProvinceId,
                 opts => opts.MapFrom(x => x.District.Province.Id));
 
-        CreateMap<WardResponse, AddressResponse>()
+        CreateMap<AddressDetail, AddressResponse>()
             .ForPath(dest => dest.WardId,
-                opts => opts.MapFrom(x => x.Id))
+                opts => opts.MapFrom(x => x.Ward.Id))
             .ForPath(dest => dest.FullNameWard,
-                opts => opts.MapFrom(x => x.FullName))
+                opts => opts.MapFrom(x => x.Ward.FullName))
             .ForPath(dest => dest.DistrictId,
-                opts => opts.MapFrom(x => x.DistrictId))
+                opts => opts.MapFrom(x => x.Ward.District.Id))
             .ForPath(dest => dest.FullNameDistrict,
-                opts => opts.MapFrom(x => x.District))
+                opts => opts.MapFrom(x => x.Ward.District.FullName))
             .ForPath(dest => dest.ProvinceId,
-                opts => opts.MapFrom(x => x.ProvinceId))
+                opts => opts.MapFrom(x => x.Ward.District.Province.Id))
             .ForPath(dest => dest.FullNameProvince,
-                opts => opts.MapFrom(x => x.Province))
+                opts => opts.MapFrom(x => x.Ward.District.Province.FullName))
             ;
+        CreateMap<AddressDetail, LocationResponse>()
+            .ForPath(dest => dest.AddressResponse,
+            opts=> opts.MapFrom(x => x));
         #endregion -- Address Module --
 
         #region -- Customer --
@@ -125,6 +129,15 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(x => x.Account.Username))
             .ForPath(dest => dest.Rank,
                 opt => opt.MapFrom(x => x.Rank.Name));
+
+        CreateMap<LocationRequest, AddressDetail>()
+            .ForPath(dest => dest.Customer.Id, 
+                opts => opts.MapFrom(x => x.CustomerId))
+            .ForPath(dest => dest.Ward.Id,
+                opts => opts.MapFrom(x => x.WardId));
+
+        CreateMap<LocationRequest, AddLocation>();
+        CreateMap<LocationResponse, CusLocationResponse>();
 
         #endregion -- Customer --
         
