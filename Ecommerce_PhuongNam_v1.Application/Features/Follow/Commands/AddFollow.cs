@@ -13,10 +13,16 @@ public class AddFollow : FollowRequest, IRequest<bool>
 public class AddFollowHandle : IRequestHandler<AddFollow, bool >
 {
     private readonly IFollowService _service;
+    private readonly ICurrentUserService _currentUserService;
+    public AddFollowHandle(IFollowService service, ICurrentUserService currentUserService)
+    {
+        _currentUserService = currentUserService;
+        _service = service;
+    }
 
-    public AddFollowHandle(IFollowService service) => _service = service;
     public async Task<bool> Handle(AddFollow request, CancellationToken cancellationToken)
     {
+        request.CustomerId = new Guid(_currentUserService.IdUser);
         return await _service.AddFollow(request);
     }
 }
