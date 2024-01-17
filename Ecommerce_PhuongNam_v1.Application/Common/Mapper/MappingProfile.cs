@@ -30,6 +30,8 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Product.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Product.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Review.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Review.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Shop.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Shop.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Variant.Requests;
@@ -50,6 +52,8 @@ using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Product.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Product.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Review.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Review.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Shop.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Shop.Queries;
 using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
@@ -59,6 +63,7 @@ using Ecommerce_PhuongNam_v1.Application.Paging.Follow;
 using Ecommerce_PhuongNam_v1.Application.Paging.Order;
 using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
 using Ecommerce_PhuongNam_v1.Application.Paging.Product;
+using Ecommerce_PhuongNam_v1.Application.Paging.Review;
 using Ecommerce_PhuongNam_v1.Application.Paging.Shop;
 using Ecommerce_PhuongNam_v1.Domain.Entities;
 
@@ -312,6 +317,18 @@ public class MappingProfile : Profile
 
         CreateMap<FormCreateOrder, CreateOrder>();
         CreateMap<OrderPaging, GetListOrder>();
+
+        #endregion
+
+        #region -- Review --
+
+        CreateMap<FormCreateReview, Review>();
+        CreateMap<FormUpdateReview, Review>();
+        CreateMap<Review, ReviewResponse>();
+
+        CreateMap<FormCreateReview, CreateReview>();
+        CreateMap<FormUpdateReview, UpdateReview>();
+        CreateMap<ReviewPaging, GetListReview>();
 
         #endregion
     }
