@@ -42,6 +42,8 @@ public static class DI
             .AddScoped<IVariantService, VariantService>()
             .AddScoped<ICartService, CartService>()
             .AddScoped<IFollowService, FollowService>()
+            .AddScoped<IOrderService, OrderService>()
+            .AddScoped<IOrderItemService, OrderItemService>()
             .AddSingleton<CloudImageService>()
             ;
         #endregion -- Scoped --

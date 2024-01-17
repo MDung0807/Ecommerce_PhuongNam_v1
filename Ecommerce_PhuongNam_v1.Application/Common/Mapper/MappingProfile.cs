@@ -24,6 +24,8 @@ using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Customer.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Follow.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Follow.Responses;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Order.Requests;
+using Ecommerce_PhuongNam_v1.Application.DTOs.Order.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Requests;
 using Ecommerce_PhuongNam_v1.Application.DTOs.PaymentMethod.Responses;
 using Ecommerce_PhuongNam_v1.Application.DTOs.Product.Requests;
@@ -42,6 +44,8 @@ using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Follow.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Follow.Queries;
+using Ecommerce_PhuongNam_v1.Application.Features.Order.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Order.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.PaymentMethod.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Product.Commands;
@@ -52,6 +56,7 @@ using Ecommerce_PhuongNam_v1.Application.Paging.Brand;
 using Ecommerce_PhuongNam_v1.Application.Paging.Cart;
 using Ecommerce_PhuongNam_v1.Application.Paging.Category;
 using Ecommerce_PhuongNam_v1.Application.Paging.Follow;
+using Ecommerce_PhuongNam_v1.Application.Paging.Order;
 using Ecommerce_PhuongNam_v1.Application.Paging.PaymentMethod;
 using Ecommerce_PhuongNam_v1.Application.Paging.Product;
 using Ecommerce_PhuongNam_v1.Application.Paging.Shop;
@@ -277,6 +282,36 @@ public class MappingProfile : Profile
         CreateMap<FollowPaging, GetFollow>();
         CreateMap<FollowRequest, AddFollow>();
         CreateMap<FollowRequest, RemoveFollow>();
+
+        #endregion
+
+        #region -- Order --
+
+        CreateMap<OrderItemRequest, OrderItem>()
+            .ForPath(dest => dest.Variant.Id,
+                opts => opts.MapFrom(x => x.VariantId));
+        
+        CreateMap<FormCreateOrder, Order>()
+            .ForPath(dest => dest.PaymentMethod.Id, 
+                opts => opts.MapFrom(x => x.PaymentMethodId))
+            .ForPath(dest => dest.ToAddress.Id, 
+                opts =>opts.MapFrom(x => x.ToAddressId))
+            .ForPath(dest => dest.OrderItems, 
+                opts => opts.MapFrom(x => x.ItemRequests))
+            .ForPath(dest => dest.ShippingMethod, 
+                opts => opts.MapFrom(x => x.ShippingMethodId));
+
+        CreateMap<OrderItem, OrderItemResponse>();
+        CreateMap<Order, OrderResponse>()
+            .ForPath(dest => dest.ToAddress, 
+                opts => opts.MapFrom(x => x.ToAddress))
+            .ForPath(dest => dest.FromAddress,
+                opts => opts.MapFrom(x => x.FromAddress))
+            .ForPath(dest => dest.ItemResponses, 
+                opts => opts.MapFrom(x => x.OrderItems));
+
+        CreateMap<FormCreateOrder, CreateOrder>();
+        CreateMap<OrderPaging, GetListOrder>();
 
         #endregion
     }
