@@ -14,5 +14,7 @@ public class Order : BaseEntity<Guid>
     public ShippingMethod ShippingMethod { get; set; }
     public PaymentMethod PaymentMethod { get; set; }
     public HashSet<OrderItem> OrderItems { get; set; }
+    public Customer Customer;
+
     #endregion -- Relationship --
 }

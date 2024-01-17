@@ -25,6 +25,7 @@ namespace Ecommerce_PhuongNam_v1.Domain.Entities
         public HashSet<Offer> Offers { get; set; }
         public HashSet<ReviewReply>Replies { get; set; }
         public HashSet<UserFollowShop> UserFollowShops { get; set; }
+        public HashSet<Order> Orders { get; set; }
         #endregion -- RelationShip --
     }
 }

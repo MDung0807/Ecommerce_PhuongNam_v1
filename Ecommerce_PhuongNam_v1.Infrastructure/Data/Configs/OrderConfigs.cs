@@ -24,5 +24,9 @@ public class OrderConfigs : BaseEntityConfig<Guid>, IEntityTypeConfiguration<Ord
         builder.HasOne(x => x.ShippingMethod)
             .WithMany(x => x.Orders)
             .HasForeignKey("ShippingMethodId");
+
+        builder.HasOne(x => x.Customer)
+            .WithMany(x => x.Orders)
+            .HasForeignKey("CustomerId");
     }
 }
