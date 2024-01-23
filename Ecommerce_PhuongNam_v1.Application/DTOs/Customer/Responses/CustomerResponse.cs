@@ -13,5 +13,7 @@
         public int Status { get; set; }
         public string Rank { get; set; }
         public int WardId { get; set; }
+        public DateTime DateCreate { get; set; }
+        public DateTime DateUpdate { get; set; }
     }
 }

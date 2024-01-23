@@ -45,7 +45,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             IMailService mailService,
             CloudImageService imageService,
             IAddressDetailService addressDetail,
-            ICurrentUserService currentUserService)
+            ICurrentUserService currentUserService, IGenericRepository<Cart, Guid> cartRepository)
         {
             _mapper = mapper;
             _accountService = accountService;
@@ -56,6 +56,7 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             _imageService = imageService;
             _addressDetailService = addressDetail;
             _currentUserService = currentUserService;
+            _cartRepository = cartRepository;
         }
         #endregion -- Contructor --
 

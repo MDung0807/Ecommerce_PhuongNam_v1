@@ -6,11 +6,12 @@ namespace Ecommerce_PhuongNam_v1.Application.Specifications.Customer;
 
 public sealed class CustomerSpecification : BaseSpecification<Domain.Entities.Customer>
 {
-    public CustomerSpecification(CustomerPaging paging = null, bool checkStatus = true) : base(x => x.Account.RoleAccounts.Any(r => r.Role.Name ==AppConstants.CUSTOMER) , checkStatus)
+    public CustomerSpecification(CustomerPaging paging = null, bool checkStatus = true) 
+        : base(x => x.Account.RoleAccounts.All(r => r.Role.Name == AppConstants.CUSTOMER) , checkStatus)
     {
         AddInclude(x => x.Account);
         AddInclude(x => x.Account.RoleAccounts);
-        AddInclude("RoleAccounts.Role");
+        AddInclude("Account.RoleAccounts.Role");
         AddInclude(x => x.Rank);
 
         if (paging != null)
