@@ -52,6 +52,22 @@ public class CustomerController : ControllerBase
         var response = await _sender.Send(new GetCustomer());
         return Ok(new Response<ProfileResponse>(false, response));
     }
+
+    [HttpGet("getById")]
+    [Authorize(Roles = AppConstants.ADMIN)]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var response = await _sender.Send(new GetCustomer{Id = id});
+        return Ok(new Response<object>(false, response));
+    }
+
+    [HttpGet("filter")]
+    [Authorize(Roles = AppConstants.ADMIN)]
+    public async Task<IActionResult> FilterCustomer([FromQuery] FilterCustomerRequest request)
+    {
+        var response = await _sender.Send(_mapper.Map<FilterCustomer>(request));
+        return Ok(new Response<CustomerPagingResult>(false, response));
+    }
  
     [HttpGet("getAll")]
     [Authorize(Roles = "ADMIN")]

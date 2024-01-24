@@ -12,8 +12,8 @@ public class GetCustomer : IRequest<ProfileResponse>
 
 public class GetCustomerHandle : IRequestHandler<GetCustomer, ProfileResponse>
 {
-    private ICurrentUserService _currentUserService;
-    private ICustomerService _service;
+    private readonly ICurrentUserService _currentUserService;
+    private readonly ICustomerService _service;
 
     public GetCustomerHandle(ICurrentUserService currentUserService, ICustomerService service)
     {
@@ -23,6 +23,8 @@ public class GetCustomerHandle : IRequestHandler<GetCustomer, ProfileResponse>
     
     public async Task<ProfileResponse> Handle(GetCustomer request, CancellationToken cancellationToken)
     {
-        return await _service.GetById(new Guid(_currentUserService.IdUser));
+        if (request.Id == default)
+            request.Id = new Guid(_currentUserService.IdUser);
+        return await _service.GetById(request.Id);
     }
 }

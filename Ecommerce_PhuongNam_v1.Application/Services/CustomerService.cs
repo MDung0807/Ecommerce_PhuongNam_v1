@@ -239,6 +239,21 @@ namespace Ecommerce_PhuongNam_v1.Application.Services
             return await _addressDetailService.Delete(addressDetailId);
         }
 
+        public async Task<CustomerPagingResult> FilterCustomer(FilterCustomerRequest request)
+        {
+            CustomerSpecification specification = new CustomerSpecification(paging: new CustomerPaging
+            {
+                PageIndex = request.PageIndex, PageSize = request.PageSize,
+            }, fullname: request.Param, checkStatus: false);
+            
+            List<Customer> customers = await _repository.ToList(specification);
+            int count = await _repository.Count(new CustomerSpecification(fullname: request.Param, checkStatus: false));
+            CustomerPagingResult result = AppUtils.ResultPaging<CustomerPagingResult, CustomerResponse>(
+                request.PageIndex,request.PageSize, count,
+                await AppUtils.MapObject<Customer, CustomerResponse>(customers, _mapper));
+            return result;
+        }
+
         public async Task<bool> Delete(Guid id)
         {
             CustomerSpecification customerSpecification = new CustomerSpecification(id, false, getAll:false);

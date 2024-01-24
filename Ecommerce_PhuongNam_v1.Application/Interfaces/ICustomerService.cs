@@ -12,5 +12,6 @@ namespace Ecommerce_PhuongNam_v1.Application.Interfaces
         Task<bool> AddLocation(LocationRequest request);
         Task<List<CusLocationResponse>> GetAllLocation(Guid customerId);
         Task<bool> RemoveAddress(Guid addressDetailId);
+        Task<CustomerPagingResult> FilterCustomer(FilterCustomerRequest request);
     }
 }

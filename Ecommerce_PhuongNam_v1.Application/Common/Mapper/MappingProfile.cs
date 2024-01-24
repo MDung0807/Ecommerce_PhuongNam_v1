@@ -44,6 +44,7 @@ using Ecommerce_PhuongNam_v1.Application.Features.Cart.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Category.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Customer.Commands;
+using Ecommerce_PhuongNam_v1.Application.Features.Customer.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Follow.Commands;
 using Ecommerce_PhuongNam_v1.Application.Features.Follow.Queries;
 using Ecommerce_PhuongNam_v1.Application.Features.Order.Commands;
@@ -129,6 +130,7 @@ public class MappingProfile : Profile
         CreateMap<FormRegister, Customer>();
         CreateMap<FormUpdate, Customer>();
         CreateMap<FormUpdate, UpdateCustomer>();
+        CreateMap<FilterCustomerRequest, FilterCustomer>();
         CreateMap<Customer, ProfileResponse>()
             .ForPath(dest => dest.Username, 
                 opt => opt.MapFrom(x => x.Account.Username))
